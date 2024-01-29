@@ -1,9 +1,9 @@
-import styles from '@/app/page.module.css'
+import styles from './Header.module.css'
 
 export default function Header() {
     return (
-        <main className={styles.main}>
-            <h1>Hello World</h1>
-        </main>
+        <header className={styles.header}>
+            <h1>Next.js Quiz</h1>
+        </header>
     )
 }
