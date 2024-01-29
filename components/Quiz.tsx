@@ -8,12 +8,14 @@ import styles from './Quiz.module.css'
 
 
 export default function Quiz() {
-    //array containing the entered answers by the user.
+    //State containing the entered answers by the user.
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
+    //State containing the shuffled which are displayed to the user.
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+    //constant to determine which question is currently active.
     const activeQuestionIndex = userAnswers.length;
 
-    //checking if quiz is over
+    //constant to represent if quiz has ended
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
     //function to append the answer to the userAnswers array
@@ -21,7 +23,7 @@ export default function Quiz() {
         setUserAnswers(prevState => [...prevState, selectedAnswer]);
     }
 
-    //useEffect required to stop hydration error as we are shuffling the answers causing a mismatch between React tree that was pre-rendered and server side value
+    //useEffect required to stop hydration error as we are shuffling the answers causing a mismatch between React tree that was pre-rendered and server side value.
     useEffect(() => {
         if (!quizIsComplete) {
             setShuffledAnswers(QUESTIONS[activeQuestionIndex].answers.sort(() => Math.random() - 0.5))
