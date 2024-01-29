@@ -1,4 +1,4 @@
-#question h2 {
+.question h2 {
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
@@ -7,7 +7,7 @@
     color: #c1b2dd;
 }
   
-#answers {
+.answers {
     list-style: none;
     margin: 0;
     padding: 0;

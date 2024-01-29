@@ -17,9 +17,9 @@ export default function Quiz() {
     }
 
     return (
-        <div id={styles.question}>
+        <div className={styles.question}>
             <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-            <ul id={styles.answers}>
+            <ul className={styles.answers}>
                 {QUESTIONS[activeQuestionIndex].answers.map(answer => <li key={answer}><button onClick={() => handleSelectAnswer(answer)}>{answer}</button></li>)}
             </ul>
         </div>
