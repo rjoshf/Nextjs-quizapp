@@ -1,0 +1,16 @@
+.questiontime {
+    width: 50%;
+    height: 0.5rem;
+    border-radius: 24px;
+    background: #e0e0e0; /* Default background color */
+    margin: 0;
+    transition: background-color 0.5s ease; /* Transition effect for background color */
+}
+
+.questiontime::-webkit-progress-bar {
+    background: #e0e0e0; /* Background color of the progress bar container */
+}
+
+.questiontime::-webkit-progress-value {
+    background: #9e5ef8; /* Color of the progress bar */
+}
