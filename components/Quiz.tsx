@@ -23,10 +23,11 @@ export default function Quiz() {
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
     //function to append the answer to the userAnswers array
-    function handleSelectAnswer(selectedAnswer: string) {
+    const handleSelectAnswer = (selectedAnswer: string) => {
         setUserAnswers(prevState => [...prevState, selectedAnswer]);
     }
 
+    //function to handle running out of time - useCallback is to cache this function to stop it over-running, as its a useEffect dependency
     const handleSkipAnswer = useCallback(() => {
         setUserAnswers(prevState => [...prevState, "question skipped"])
     }, [])
@@ -38,6 +39,7 @@ export default function Quiz() {
         }
     }, [quizIsComplete, activeQuestionIndex])
 
+    //returned jsx for if quiz is complete
     if (quizIsComplete) {
         return (
             <div>
@@ -46,11 +48,12 @@ export default function Quiz() {
         )
     }
 
+    //returned jsx for if the quiz is not complete
     return (
         <>
             {!quizIsComplete && <div className={styles.quiz}>
                 <div className={styles.question}>
-                    <QuestionTimer key={activeQuestionIndex} timeout={30000} onTimeout={handleSkipAnswer}></QuestionTimer>
+                    <QuestionTimer key={activeQuestionIndex} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>
                     <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
                     <ul className={styles.answers}>
                         {shuffledAnswers.map(answer => <li key={answer}><button onClick={() => handleSelectAnswer(answer)}>{answer}</button></li>)}
