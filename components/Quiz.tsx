@@ -2,18 +2,19 @@
 
 import Question from './Question'
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback } from 'react'
 
 import QUESTIONS from './questions.js'
 
 import styles from './Quiz.module.css'
-
 
 export default function Quiz() {
 
     const [answerState, setAnswerState] = useState('')
     //State containing the entered answers by the user.
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
+
+    const [score, setScore] = useState(0);
 
     //constant to determine which question is currently active.
     const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
@@ -29,6 +30,7 @@ export default function Quiz() {
         setTimeout(() => {
             if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
                 setAnswerState('correct');
+                setScore(prevState => prevState + 1)
             } else {
                 setAnswerState('wrong');
             }
@@ -44,31 +46,18 @@ export default function Quiz() {
         setUserAnswers(prevState => [...prevState, "question skipped"])
     }, [])
 
-    //returned jsx for if quiz is complete
-    if (quizIsComplete) {
-        return (
-            <div>
-                <h2>Completed!</h2>
-            </div>
-        )
-    }
-
-    //returned jsx for if the quiz is not complete
     return (
         <>
             {!quizIsComplete && <div className={styles.quiz}>
                 <Question
-                    key={activeQuestionIndex}
-                    title={QUESTIONS[activeQuestionIndex].text}
+                    questionIndex={activeQuestionIndex}
                     answerState={answerState}
-                    activeQuestion={activeQuestionIndex}
-                    answers={QUESTIONS[activeQuestionIndex].answers}
                     handleSelectAnswer={handleSelectAnswer}
                     handleSkipAnswer={handleSkipAnswer}
                     userAnswers={userAnswers}
                 ></Question>
             </div>}
-            {quizIsComplete && <h2>Completed!</h2>}
+            {quizIsComplete && <h2>{score}</h2>}
         </>
     )
 }
