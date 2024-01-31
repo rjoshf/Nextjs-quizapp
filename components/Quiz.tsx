@@ -10,6 +10,8 @@ import styles from './Quiz.module.css'
 
 
 export default function Quiz() {
+
+    const [answerState, setAnswerState] = useState('')
     //State containing the entered answers by the user.
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
 
@@ -17,14 +19,27 @@ export default function Quiz() {
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     //constant to determine which question is currently active.
-    const activeQuestionIndex = userAnswers.length;
+    const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
     //constant to represent if quiz has ended
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
     //function to append the answer to the userAnswers array
     const handleSelectAnswer = (selectedAnswer: string) => {
+        setAnswerState('answered');
         setUserAnswers(prevState => [...prevState, selectedAnswer]);
+
+        setTimeout(() => {
+            if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
+                setAnswerState('correct');
+            } else {
+                setAnswerState('wrong');
+            }
+
+            setTimeout(() => {
+                setAnswerState('')
+            }, 2000)
+        }, 1000)
     }
 
     //function to handle running out of time - useCallback is to cache this function to stop it over-running, as its a useEffect dependency
@@ -56,7 +71,23 @@ export default function Quiz() {
                     <QuestionTimer key={activeQuestionIndex} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>
                     <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
                     <ul className={styles.answers}>
-                        {shuffledAnswers.map(answer => <li key={answer}><button onClick={() => handleSelectAnswer(answer)}>{answer}</button></li>)}
+                        {shuffledAnswers.map(answer => {
+                            const isSelected = userAnswers[userAnswers.length - 1] === answer
+                            let cssClass = '';
+
+                            if (answerState === 'answered' && isSelected) {
+                                cssClass = styles.selected;
+                            }
+
+                            if ((answerState === 'correct' || answerState === 'wrong') && isSelected) {
+                                cssClass = styles[answerState];
+                            }
+
+                            return (
+                                <li key={answer} className={styles.answer}><button onClick={() => handleSelectAnswer(answer)} className={`${styles.answerButton} ${cssClass}`} disabled={answerState === '' ? false : true}>{answer}</button></li>
+                            )
+
+                        })}
                     </ul>
                 </div>
             </div>}
