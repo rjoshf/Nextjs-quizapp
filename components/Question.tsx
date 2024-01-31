@@ -7,7 +7,7 @@ const Question: React.FC<{ answerState: string; activeQuestion: number; answers:
 
     return (
         <div className={styles.question}>
-            <QuestionTimer key={activeQuestion} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>
+            {answerState === '' && <QuestionTimer timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>}
             <h2>{title}</h2>
             <Answers answers={answers} answerState={answerState} userAnswers={userAnswers} handleSelectAnswer={handleSelectAnswer}></Answers>
         </div>

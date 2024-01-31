@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import styles from './QuestionTimer.module.css'
 
-const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void }> = ({ timeout, onTimeout }) => {
+const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ timeout, onTimeout }) => {
     //state keeping track of the remaining time on the question.
     const [remainingTime, setRemainingTime] = useState(timeout);
 
