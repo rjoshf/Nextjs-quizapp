@@ -7,6 +7,7 @@ import QUESTIONS from './questions.js'
 
 import { useState, useCallback, useEffect } from 'react'
 import Link from "next/link";
+import { motion } from 'framer-motion'
 
 const Question: React.FC<{}> = () => {
 
@@ -79,9 +80,14 @@ const Question: React.FC<{}> = () => {
             </div>}
             {quizIsComplete && (
                 <>
-                    <h1>{`Mark: ${userScore} out of ${QUESTIONS.length}`}</h1>
-                    <h1>{`${Math.round(userScore / QUESTIONS.length * 100)}%`}</h1>
-                    <Link href='/' onClick={() => localStorage.clear()}>Home</Link>
+                    <div className={styles.question}>
+                        <h1 className={styles.resultstitle}>Quiz Completed!</h1>
+                        <h1 className={styles.results}>{`Mark: ${userScore} out of ${QUESTIONS.length}`}</h1>
+                        <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / QUESTIONS.length * 100)}%`}</h1>
+                        <motion.div className={styles.homelink} whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
+                            <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>Return Home</Link>
+                        </motion.div>
+                    </div>
                 </>
             )
             }

@@ -33,14 +33,17 @@
 
 .answerButton.selected, .answerButton.selected:hover  {
     background-color: orange;
+    scale: 1.01;
 }
 
 .answerButton.correct, .answerButton.correct:hover {
     background-color: green;
+    scale: 1.01;
 }
 
 .answerButton.wrong, .answerButton.wrong:hover {
     background-color: red;
+    scale: 1.01;
 }
 
 .answerButton:disabled, .answerButton:disabled:hover {
