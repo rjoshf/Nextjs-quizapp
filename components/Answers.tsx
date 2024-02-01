@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const Answers: React.FC<{ answers: string[] | undefined; userAnswers: string[]; answerState: string; handleSelectAnswer: (answer: string) => void; }> = ({ answers, userAnswers, answerState, handleSelectAnswer }) => {
 
-    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>()
+    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>();
 
     //useEffect is required to stop a hydration error due to the shuffling feature.
     useEffect(() => {

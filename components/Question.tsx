@@ -5,17 +5,43 @@ import styles from './Question.module.css'
 
 import QUESTIONS from './questions.js'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 const Question: React.FC<{}> = () => {
 
+    const storedUserAnswers = localStorage.getItem('userAnswers');
+    const initialUserAnswers = storedUserAnswers ? JSON.parse(storedUserAnswers) : [];
+    const storedUserScore = localStorage.getItem('userScore');
+    const initialUserScore = storedUserScore ? JSON.parse(storedUserScore) : [];
+
     const [answerState, setAnswerState] = useState('')
-    const [userScore, setUserScore] = useState(0);
-    const [userAnswers, setUserAnswers] = useState<string[]>([]);
+    const [userScore, setUserScore] = useState<number>(initialUserScore);
+    const [userAnswers, setUserAnswers] = useState<string[]>(initialUserAnswers);
 
     const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
+
+    // Load userAnswers from localStorage on component mount
+    useEffect(() => {
+        const storedUserAnswers = localStorage.getItem('userAnswers');
+        if (storedUserAnswers) {
+            setUserAnswers(JSON.parse(storedUserAnswers));
+        }
+        const storedUserScore = localStorage.getItem('userScore');
+        if (storedUserScore) {
+            setUserScore(JSON.parse(storedUserScore));
+        }
+    }, []);
+
+    // Save userAnswers to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+    }, [userAnswers]);
+
+    useEffect(() => {
+        localStorage.setItem('userScore', JSON.stringify(+userScore));
+    }, [userScore])
 
     const handleSelectAnswer = (selectedAnswer: string) => {
         setAnswerState('answered');
