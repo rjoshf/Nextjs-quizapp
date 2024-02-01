@@ -5,13 +5,6 @@ const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ 
     // State keeping track of the remaining time on the question.
     const [remainingTime, setRemainingTime] = useState(timeout);
 
-    useEffect(() => {
-        const storedTimeRemaining = localStorage.getItem('remainingTime');
-        if (storedTimeRemaining) {
-            setRemainingTime(JSON.parse(storedTimeRemaining));
-        }
-    }, []);
-
     // Setting the timer for a question and triggering the onTimeout function when time is up.
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -25,8 +18,9 @@ const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ 
         };
     }, [remainingTime, timeout, onTimeout]);
 
-    // Setting up intervals in which time is deducted from the time left for the question.
+    // Setting up intervals in which time is deducted from the time left for the question and storing it in local storage.
     useEffect(() => {
+
         const interval = setInterval(() => {
             setRemainingTime(prevRemainingTime => {
                 const newRemainingTime = prevRemainingTime - 50;
@@ -35,10 +29,14 @@ const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ 
             });
         }, 50);
 
+        const storedTimeRemaining = localStorage.getItem('remainingTime');
+        if (storedTimeRemaining) {
+            setRemainingTime(JSON.parse(storedTimeRemaining));
+        }
+
         // Clean up function
         return () => {
             clearInterval(interval);
-            localStorage.removeItem('remainingTime')
         };
     }, []);
 

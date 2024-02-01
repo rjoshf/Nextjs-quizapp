@@ -1,11 +1,12 @@
+import styles from './Question.module.css'
+
 import QuestionTimer from "./QuestionTimer";
 import Answers from './Answers'
-
-import styles from './Question.module.css'
 
 import QUESTIONS from './questions.js'
 
 import { useState, useCallback, useEffect } from 'react'
+import Link from "next/link";
 
 const Question: React.FC<{}> = () => {
 
@@ -46,6 +47,7 @@ const Question: React.FC<{}> = () => {
     }, [userScore])
 
     const handleSelectAnswer = (selectedAnswer: string) => {
+        localStorage.removeItem('remainingTime');
         setAnswerState('answered');
         setUserAnswers(prevState => [...prevState, selectedAnswer]);
 
@@ -65,6 +67,7 @@ const Question: React.FC<{}> = () => {
 
     const handleSkipAnswer = useCallback(() => {
         setUserAnswers(prevState => [...prevState, "question skipped"])
+        localStorage.removeItem('remainingTime');
     }, [])
 
     return (
@@ -78,6 +81,7 @@ const Question: React.FC<{}> = () => {
                 <>
                     <h1>{`Mark: ${userScore} out of ${QUESTIONS.length}`}</h1>
                     <h1>{`${Math.round(userScore / QUESTIONS.length * 100)}%`}</h1>
+                    <Link href='/' onClick={() => localStorage.clear()}>Home</Link>
                 </>
             )
             }

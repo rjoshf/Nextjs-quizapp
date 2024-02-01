@@ -1,15 +1,13 @@
 
-import Header from '@/components/Header'
-import Quiz from '@/components/Quiz'
+
+import HomePage from "@/components/HomePage";
 
 
 export default function Home() {
+
   return (
     <>
-    <Header></Header>
-    <main>
-    <Quiz></Quiz>
-    </main>
+      <HomePage></HomePage>
     </>
   );
 }
