@@ -10,14 +10,14 @@ import { useState, useCallback, useEffect } from 'react'
 const Question: React.FC<{}> = () => {
 
     //Initialising values for userAnswers and userScore states.
-    const storedUserAnswers = localStorage.getItem('userAnswers');
-    const initialUserAnswers = storedUserAnswers ? JSON.parse(storedUserAnswers) : [];
-    const storedUserScore = localStorage.getItem('userScore');
-    const initialUserScore = storedUserScore ? JSON.parse(storedUserScore) : [];
+    const getLocalStorageItem = (key: string) => {
+        const storedValue = localStorage.getItem(key);
+        return storedValue ? JSON.parse(storedValue) : null;
+    };
 
     const [answerState, setAnswerState] = useState('')
-    const [userScore, setUserScore] = useState<number>(initialUserScore);
-    const [userAnswers, setUserAnswers] = useState<string[]>(initialUserAnswers);
+    const [userScore, setUserScore] = useState<number>(getLocalStorageItem('userScore') || 0);
+    const [userAnswers, setUserAnswers] = useState<string[]>(getLocalStorageItem('userAnswers') || []);
 
     const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
