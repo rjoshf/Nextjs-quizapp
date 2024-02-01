@@ -27,19 +27,24 @@
     font-weight: bold;
 }
 
-.answerButton.selected {
+.answer button:hover {
+    background-color: #027de2;
+}
+
+.answerButton.selected, .answerButton.selected:hover  {
     background-color: orange;
 }
 
-.answerButton.correct {
+.answerButton.correct, .answerButton.correct:hover {
     background-color: green;
 }
 
-.answerButton.wrong {
+.answerButton.wrong, .answerButton.wrong:hover {
     background-color: red;
 }
 
-.answerButton:disabled {
+.answerButton:disabled, .answerButton:disabled:hover {
+    pointer-events: none;
     color: black;
     border: inherit;
 }
