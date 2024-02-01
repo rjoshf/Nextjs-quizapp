@@ -9,6 +9,7 @@ import { useState, useCallback, useEffect } from 'react'
 
 const Question: React.FC<{}> = () => {
 
+    //Initialising values for userAnswers and userScore states.
     const storedUserAnswers = localStorage.getItem('userAnswers');
     const initialUserAnswers = storedUserAnswers ? JSON.parse(storedUserAnswers) : [];
     const storedUserScore = localStorage.getItem('userScore');
@@ -22,7 +23,7 @@ const Question: React.FC<{}> = () => {
 
     const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
-    // Load userAnswers from localStorage on component mount
+    // Load userAnswers and userScore from localStorage on component mount
     useEffect(() => {
         const storedUserAnswers = localStorage.getItem('userAnswers');
         if (storedUserAnswers) {
@@ -39,6 +40,7 @@ const Question: React.FC<{}> = () => {
         localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
     }, [userAnswers]);
 
+    // Save userScore to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('userScore', JSON.stringify(+userScore));
     }, [userScore])
