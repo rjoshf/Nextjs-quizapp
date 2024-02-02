@@ -7,7 +7,7 @@ import QUESTIONS from './questions.js'
 
 import { useState, useCallback, useEffect } from 'react'
 import Link from "next/link";
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Question: React.FC<{}> = () => {
 
@@ -73,21 +73,23 @@ const Question: React.FC<{}> = () => {
 
     return (
         <>
-            {!quizIsComplete && <div className={styles.question}>
+            {!quizIsComplete && <motion.div key={activeQuestionIndex} initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
                 {answerState === '' && <QuestionTimer key={activeQuestionIndex} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>}
                 <h2>{QUESTIONS[activeQuestionIndex]?.text}</h2>
                 <Answers answers={QUESTIONS[activeQuestionIndex]?.answers} answerState={answerState} userAnswers={userAnswers} handleSelectAnswer={handleSelectAnswer}></Answers>
-            </div>}
+            </motion.div>}
             {quizIsComplete && (
                 <>
-                    <div className={styles.question}>
+                    <motion.div initial={{ opacity: 0.5 }}
+                        animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
                         <h1 className={styles.resultstitle}>Quiz Completed!</h1>
                         <h1 className={styles.results}>{`Mark: ${userScore} out of ${QUESTIONS.length}`}</h1>
                         <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / QUESTIONS.length * 100)}%`}</h1>
                         <motion.div className={styles.homelink} whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
                             <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>Return Home</Link>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 </>
             )
             }
