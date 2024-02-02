@@ -20,6 +20,11 @@ const HomePage: React.FC<{}> = () => {
 
     return (
         <>
+            <nav>
+                <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
+                    <Link className={styles.startLink} href='/newquiz'>Add new quiz</Link>
+                </motion.div>
+            </nav>
             <h1 className={styles.mainTitle}>NextJS Quiz</h1>
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
