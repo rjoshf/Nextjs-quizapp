@@ -1,8 +1,17 @@
-'use client'
 
 import { useRef, useState } from 'react'
 
-const NewQuizForm: React.FC<{}> = () => {
+type quizData = {
+    title: string | undefined;
+    questions: {
+        question: string | undefined;
+        answers: {
+            answer: string | undefined;
+        }[];
+    }[];
+}
+
+const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ onAddQuiz }) => {
     const titleInputRef = useRef<HTMLInputElement>(null);
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
     const questionInputRefs: React.RefObject<HTMLInputElement>[] = Array.from(
@@ -41,7 +50,7 @@ const NewQuizForm: React.FC<{}> = () => {
             title: quizTitle,
             questions: quizQuestions,
         }
-        console.log(quizData)
+        onAddQuiz(quizData)
     };
 
     return (
