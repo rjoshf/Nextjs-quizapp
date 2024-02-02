@@ -20,14 +20,28 @@ const NewQuizForm: React.FC<{}> = () => {
 
     const newQuizHandler = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(titleInputRef.current?.value);
+        const quizTitle = titleInputRef.current?.value;
+        let quizQuestions = [];
         for (let i = 0; i < numberOfQuestions; i++) {
-            console.log(questionInputRefs[i].current?.value);
+            const question = questionInputRefs[i].current?.value;
+            const answers = [];
 
             for (let j = 0; j < 4; j++) {
-                console.log(answerInputRefs[i][j].current?.value);
+                const answer = answerInputRefs[i][j].current?.value;
+                answers.push({ answer });
             }
+
+            quizQuestions.push({
+                question,
+                answers,
+            });
         }
+
+        const quizData = {
+            title: quizTitle,
+            questions: quizQuestions,
+        }
+        console.log(quizData)
     };
 
     return (
