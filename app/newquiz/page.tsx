@@ -28,9 +28,8 @@ export default function NewQuizPage() {
     }
 
     return (
-        <>
-            <h1>Add a new quiz</h1>
-            <NewQuizForm onAddQuiz={addQuizHandler}></NewQuizForm>
-        </>
+
+        <NewQuizForm onAddQuiz={addQuizHandler}></NewQuizForm>
+
     )
 }

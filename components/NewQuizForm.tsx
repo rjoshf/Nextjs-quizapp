@@ -1,3 +1,4 @@
+import styles from './NewQuizForm.module.css'
 
 import { useRef, useState } from 'react'
 
@@ -54,43 +55,46 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
     };
 
     return (
-        <div>
-            <form onSubmit={newQuizHandler}>
-                <div>
-                    <label htmlFor="title">Quiz Title</label>
-                    <input type="text" id="title" ref={titleInputRef} />
-                </div>
-                <div>
-                    <label htmlFor="numberofquestions">Enter the number of questions:</label>
-                    <select id="numberofquestions" onChange={questionChangeHandler}>
-                        {Array.from({ length: 10 }, (_, index) => (
-                            <option key={index + 1} value={index + 1}>
-                                {index + 1}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                {[...Array(numberOfQuestions)].map((_, questionIndex) => (
-                    <div key={questionIndex}>
-                        <label htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
-                        <input ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
-
-                        {[...Array(4)].map((_, answerIndex) => (
-                            <div key={answerIndex}>
-                                <label htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
-                                    {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
-                                </label>
-                                <input ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
-                            </div>
-                        ))}
+        <>
+            <h1 className={styles.newquiztitle}>Add a new quiz</h1>
+            <div className={styles.quizform}>
+                <form onSubmit={newQuizHandler}>
+                    <div>
+                        <label className={styles.label} htmlFor="title">Quiz Title: </label>
+                        <input className={styles.input} type="text" id="title" ref={titleInputRef} />
                     </div>
-                ))}
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-            <h1>{numberOfQuestions}</h1>
-        </div>
+                    <div>
+                        <label className={styles.label} htmlFor="numberofquestions">Enter the number of questions:</label>
+                        <select className={styles.input} id="numberofquestions" onChange={questionChangeHandler}>
+                            {Array.from({ length: 10 }, (_, index) => (
+                                <option key={index + 1} value={index + 1}>
+                                    {index + 1}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    {[...Array(numberOfQuestions)].map((_, questionIndex) => (
+                        <div key={questionIndex}>
+                            <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
+                            <input className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
+
+                            {[...Array(4)].map((_, answerIndex) => (
+                                <div key={answerIndex}>
+                                    <label className={styles.label} htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
+                                        {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
+                                    </label>
+                                    <input className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+                <h1>{numberOfQuestions}</h1>
+            </div>
+        </>
     );
 };
 
