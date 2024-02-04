@@ -3,7 +3,16 @@ import { MongoClient } from 'mongodb';
 import Header from "@/components/Header";
 import Quiz from "@/components/Quiz";
 
-type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
+type quizz = {
+    title: string;
+    questions: {
+        question: string;
+        answers: {
+            answer: string;
+        }[];
+    }[];
+    id: string;
+}[]
 
 async function getQuizzes() {
     // Connect to MongoDB
@@ -24,15 +33,21 @@ async function getQuizzes() {
     return updatedQuizzesArray;
 }
 
-export default async function QuizPage() {
+export default async function QuizPage({ params }: { params: { id: string } }) {
 
-    const quizzes: quizzes = await getQuizzes();
+    console.log({ params })
+
+    const quizz: quizz = await getQuizzes();
+
+    const selectedQuiz = quizz.filter((quiz) => quiz.id === params.id)
+
+    console.log(selectedQuiz);
 
     return (
         <>
-            <Header quizName={quizzes[0].title}></Header>
+            <Header quizName={selectedQuiz[0].title}></Header>
             <main>
-                <Quiz quizzes={quizzes}></Quiz>
+                <Quiz quizz={selectedQuiz}></Quiz>
             </main>
         </>
     );

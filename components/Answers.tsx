@@ -28,7 +28,7 @@ const Answers: React.FC<{ answers: string[]; userAnswers: string[]; answerState:
                 }
 
                 return (
-                    <motion.li whileHover={answerState === '' ? { scale: 1.01 } : { scale: 1.00 }} transition={{ type: 'spring', stiffness: 150 }} key={answer} className={styles.answer}><button onClick={() => handleSelectAnswer(answer)} className={`${styles.answerButton} ${cssClass}`} disabled={answerState === '' ? false : true}>{answer}</button></motion.li>
+                    <motion.li whileHover={answerState === '' ? { scale: 1.01 } : { scale: 1.00 }} transition={{ type: 'spring', stiffness: 150 }} key={Math.random() * 1000} className={styles.answer}><button onClick={() => handleSelectAnswer(answer)} className={`${styles.answerButton} ${cssClass}`} disabled={answerState === '' ? false : true}>{answer}</button></motion.li>
                 )
             })}
         </ul>

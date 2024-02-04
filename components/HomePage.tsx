@@ -30,7 +30,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     }
 
     function startQuiz() {
-        router.push('/' + selectedOption);
+        router.push('/quiz/' + selectedOption);
     }
 
     return (
@@ -48,7 +48,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                     <button className={styles.startLink} onClick={startQuiz}>{startQuizText}</button>
                 </motion.div>
                 <select onChange={quizChangeHandler}>
-                    {quizzes.map((quiz, index) => <option selected={index === 0 ? true : false} key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
                 </select>
             </div>
         </>

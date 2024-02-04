@@ -4,7 +4,7 @@ import Question from './Question'
 
 import styles from './Quiz.module.css'
 
-type quizzes = {
+type quizz = {
     title: string;
     questions: {
         question: string;
@@ -15,11 +15,11 @@ type quizzes = {
     id: string
 }[]
 
-const Quiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
+const Quiz: React.FC<{ quizz: quizz }> = ({ quizz }) => {
 
     return (
         <div className={styles.quiz}>
-            <Question quizzes={quizzes}></Question>
+            <Question quizz={quizz}></Question>
         </div>
     )
 }
