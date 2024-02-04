@@ -7,10 +7,15 @@ import { useState, useCallback, useEffect } from 'react'
 import Link from "next/link";
 import { motion } from 'framer-motion'
 
-type quizz = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
+type quizzQuestions = {
+    question: string;
+    answers: {
+        answer: string;
+    }[];
+}[];
 
 
-const Question: React.FC<{ quizz: quizz }> = ({ quizz }) => {
+const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions }) => {
 
     //Initialising values for userAnswers and userScore states.
     const getLocalStorageItem = (key: string) => {
@@ -24,11 +29,11 @@ const Question: React.FC<{ quizz: quizz }> = ({ quizz }) => {
 
     const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
 
-    const quizIsComplete = activeQuestionIndex === quizz[0].questions.length;
+    const quizIsComplete = activeQuestionIndex === quizzQuestions.length;
 
     // Load userAnswers and userScore from localStorage on component mount
     useEffect(() => {
-        console.log(quizz[0].questions)
+        console.log(quizzQuestions)
         const storedUserAnswers = localStorage.getItem('userAnswers');
         if (storedUserAnswers) {
             setUserAnswers(JSON.parse(storedUserAnswers));
@@ -49,7 +54,7 @@ const Question: React.FC<{ quizz: quizz }> = ({ quizz }) => {
         localStorage.setItem('userScore', JSON.stringify(+userScore));
     }, [userScore])
 
-    const answers = quizz[0].questions[activeQuestionIndex]?.answers.map(answers => answers.answer)
+    const answers = quizzQuestions[activeQuestionIndex]?.answers.map(answers => answers.answer)
 
     const handleSelectAnswer = (selectedAnswer: string) => {
         localStorage.removeItem('remainingTime');
@@ -80,7 +85,7 @@ const Question: React.FC<{ quizz: quizz }> = ({ quizz }) => {
             {!quizIsComplete && <motion.div key={activeQuestionIndex} initial={{ opacity: 0.5 }}
                 animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
                 {answerState === '' && <QuestionTimer key={activeQuestionIndex} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>}
-                <h2>{quizz[0].questions[activeQuestionIndex]?.question}</h2>
+                <h2>{quizzQuestions[activeQuestionIndex]?.question}</h2>
                 <Answers answers={answers} answerState={answerState} userAnswers={userAnswers} handleSelectAnswer={handleSelectAnswer}></Answers>
             </motion.div>}
             {quizIsComplete && (
@@ -88,8 +93,8 @@ const Question: React.FC<{ quizz: quizz }> = ({ quizz }) => {
                     <motion.div initial={{ opacity: 0.5 }}
                         animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
                         <h1 className={styles.resultstitle}>Quiz Completed!</h1>
-                        <h1 className={styles.results}>{`Mark: ${userScore} out of ${quizz[0].questions.length}`}</h1>
-                        <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizz[0].questions.length * 100)}%`}</h1>
+                        <h1 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h1>
+                        <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h1>
                         <motion.div className={styles.homelink} whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
                             <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>Return Home</Link>
                         </motion.div>

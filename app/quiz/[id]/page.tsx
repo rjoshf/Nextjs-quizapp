@@ -14,6 +14,13 @@ type quizz = {
     id: string;
 }[]
 
+type quizzQuestions = {
+    question: string;
+    answers: {
+        answer: string;
+    }[];
+}[];
+
 async function getQuizzes() {
     // Connect to MongoDB
     const client = await MongoClient.connect('mongodb+srv://joshW:football101@cluster0.cwcph8s.mongodb.net/quizzes?retryWrites=true&w=majority');
@@ -41,13 +48,15 @@ export default async function QuizPage({ params }: { params: { id: string } }) {
 
     const selectedQuiz = quizz.filter((quiz) => quiz.id === params.id)
 
-    console.log(selectedQuiz);
+    const quizzQuestions: quizzQuestions = selectedQuiz[0].questions
+
+    console.log(selectedQuiz[0].questions);
 
     return (
         <>
             <Header quizName={selectedQuiz[0].title}></Header>
             <main>
-                <Quiz quizz={selectedQuiz}></Quiz>
+                <Quiz quizzQuestions={quizzQuestions}></Quiz>
             </main>
         </>
     );
