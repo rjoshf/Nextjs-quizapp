@@ -17,7 +17,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     const router = useRouter();
 
     const [startQuizText, setStartQuizText] = useState("Start Quiz");
-    const [selectedOption, setSelectedOption] = useState({ id: quizzes[0].id, title: quizzes[0].title });
+    const [selectedOption, setSelectedOption] = useState(quizzes[0].id);
 
     useEffect(() => {
         if (localStorage.getItem('userAnswers')) {
@@ -26,11 +26,11 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     }, [])
 
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption({ id: event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!, title: event.currentTarget.value });
+        setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);
     }
 
     function startQuiz() {
-        router.push('/' + selectedOption.id);
+        router.push('/' + selectedOption);
     }
 
     return (
@@ -47,8 +47,8 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
                     <button className={styles.startLink} onClick={startQuiz}>{startQuizText}</button>
                 </motion.div>
-                <select onChange={quizChangeHandler} value={selectedOption.title}>
-                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                <select onChange={quizChangeHandler}>
+                    {quizzes.map((quiz, index) => <option selected={index === 0 ? true : false} key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
                 </select>
             </div>
         </>

@@ -1,6 +1,7 @@
 'use client'
 
 import NewQuizForm from "@/components/NewQuizForm";
+import { useRouter } from "next/navigation";
 
 type quizData = {
     title: string | undefined;
@@ -15,9 +16,11 @@ type quizData = {
 
 export default function NewQuizPage() {
 
+    const router = useRouter()
+
     const addQuizHandler = async (quizData: quizData) => {
         // console.log(JSON.stringify(quizData))
-        const response = await fetch('/api/newquiz', {
+        await fetch('/api/newquiz', {
             method: 'POST',
             body: JSON.stringify(quizData),
             headers: {
@@ -25,6 +28,8 @@ export default function NewQuizPage() {
             },
         })
 
+        router.push("/");
+        router.refresh();
     }
 
     return (

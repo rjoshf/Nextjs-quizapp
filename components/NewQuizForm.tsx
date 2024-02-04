@@ -1,3 +1,4 @@
+
 import styles from './NewQuizForm.module.css'
 
 import { useRef, useState } from 'react'
@@ -13,6 +14,7 @@ type quizData = {
 }
 
 const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ onAddQuiz }) => {
+
     const titleInputRef = useRef<HTMLInputElement>(null);
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
     const questionInputRefs: React.RefObject<HTMLInputElement>[] = Array.from(
@@ -61,7 +63,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                 <form onSubmit={newQuizHandler}>
                     <div>
                         <label className={styles.label} htmlFor="title">Quiz Title: </label>
-                        <input className={styles.input} type="text" id="title" ref={titleInputRef} />
+                        <input required className={styles.input} type="text" id="title" ref={titleInputRef} />
                     </div>
                     <div>
                         <label className={styles.label} htmlFor="numberofquestions">Enter the number of questions:</label>
@@ -76,14 +78,14 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                     {[...Array(numberOfQuestions)].map((_, questionIndex) => (
                         <div key={questionIndex}>
                             <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
-                            <input className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
+                            <input required className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
 
                             {[...Array(4)].map((_, answerIndex) => (
                                 <div key={answerIndex}>
                                     <label className={styles.label} htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
                                         {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
                                     </label>
-                                    <input className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
+                                    <input required className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
                                 </div>
                             ))}
                         </div>
