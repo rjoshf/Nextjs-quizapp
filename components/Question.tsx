@@ -3,11 +3,9 @@ import styles from './Question.module.css'
 import QuestionTimer from "./QuestionTimer";
 import Answers from './Answers'
 
-import QUESTIONS from './questions.js'
-
 import { useState, useCallback, useEffect } from 'react'
 import Link from "next/link";
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
