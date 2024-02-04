@@ -4,11 +4,24 @@ import Question from './Question'
 
 import styles from './Quiz.module.css'
 
-export default function Quiz() {
+type quizzes = {
+    title: string;
+    questions: {
+        question: string;
+        answers: {
+            answer: string;
+        }[];
+    }[];
+    id: string
+}[]
+
+const Quiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <div className={styles.quiz}>
-            <Question></Question>
+            <Question quizzes={quizzes}></Question>
         </div>
     )
 }
+
+export default Quiz

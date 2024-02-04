@@ -8,7 +8,8 @@ import { motion } from "framer-motion"
 
 import { useEffect, useState } from 'react'
 
-const HomePage: React.FC<{}> = () => {
+
+const HomePage: React.FC<{}> = ({ }) => {
 
     const [startQuizText, setStartQuizText] = useState("Start Quiz")
 

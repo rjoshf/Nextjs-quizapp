@@ -2,10 +2,12 @@
 
 import styles from './Header.module.css'
 
-export default function Header() {
+const Header: React.FC<{ quizName: string }> = ({ quizName }) => {
     return (
         <header className={styles.header}>
-            <h1>Quiz Name</h1>
+            <h1>{quizName}</h1>
         </header>
     )
 }
+
+export default Header

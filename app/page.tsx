@@ -1,9 +1,20 @@
-
+import { MongoClient } from 'mongodb'
 
 import HomePage from "@/components/HomePage";
+import { NextPage } from 'next';
 
+type quizzes = {
+  title: string;
+  questions: {
+    question: string;
+    answers: {
+      answer: string;
+    }[];
+  }[];
+  id: string
+}
 
-export default function Home() {
+const Home: NextPage<{}> = ({ }) => {
 
   return (
     <>
@@ -11,3 +22,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

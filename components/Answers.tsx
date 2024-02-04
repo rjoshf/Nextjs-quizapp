@@ -4,16 +4,14 @@ import { useState, useEffect } from 'react';
 
 import { motion } from 'framer-motion'
 
-const Answers: React.FC<{ answers: string[] | undefined; userAnswers: string[]; answerState: string; handleSelectAnswer: (answer: string) => void; }> = ({ answers, userAnswers, answerState, handleSelectAnswer }) => {
+const Answers: React.FC<{ answers: string[]; userAnswers: string[]; answerState: string; handleSelectAnswer: (answer: string) => void; }> = ({ answers, userAnswers, answerState, handleSelectAnswer }) => {
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>();
 
     //useEffect is required to stop a hydration error due to the shuffling feature.
     useEffect(() => {
-        if (answers) {
-            setShuffledAnswers([...answers].sort(() => Math.random() - 0.5))
-        }
-    }, [answers])
+        setShuffledAnswers([...answers].sort(() => Math.random() - 0.5))
+    }, [])
 
     return (
         <ul className={styles.answers}>
