@@ -26,3 +26,22 @@
     padding: 10px;
     height: 2px;
 }
+
+.submitButton {
+    background:none; 
+    border:none;     
+    width: 33%;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    color: black;
+    background: #6cb7f5;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.submitButton:hover {
+    background-color: #027de2;
+}

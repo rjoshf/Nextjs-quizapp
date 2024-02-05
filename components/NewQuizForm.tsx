@@ -3,6 +3,8 @@ import styles from './NewQuizForm.module.css'
 
 import { useRef, useState } from 'react'
 
+import { motion } from 'framer-motion'
+
 type quizData = {
     title: string | undefined;
     questions: {
@@ -14,6 +16,8 @@ type quizData = {
 }
 
 const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ onAddQuiz }) => {
+
+    const [isSubmitting, setIsSubmitting] = useState("Create Quiz")
 
     const titleInputRef = useRef<HTMLInputElement>(null);
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
@@ -41,6 +45,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
             for (let j = 0; j < 4; j++) {
                 const answer = answerInputRefs[i][j].current?.value;
                 answers.push({ answer });
+                let answerArray = answers.map(answer => answer.answer)
             }
 
             quizQuestions.push({
@@ -49,10 +54,28 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
             });
         }
 
+        const quizAnswers = quizQuestions.map(question =>
+            question.answers.map(answer => answer.answer!.trim())
+        );
+
+        let hasDuplicates = quizAnswers.some(answers =>
+            answers.some((answer, j) => answers.indexOf(answer) !== j)
+        );
+
+        console.log(hasDuplicates);
+
+        if (hasDuplicates) {
+            console.log("There are duplicate answers in the quiz!");
+            hasDuplicates = false;
+            return;
+        }
+
         const quizData = {
             title: quizTitle,
             questions: quizQuestions,
         }
+
+        setIsSubmitting("Creating quiz...")
         onAddQuiz(quizData)
     };
 
@@ -90,9 +113,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                             ))}
                         </div>
                     ))}
-                    <div>
-                        <button type="submit">Submit</button>
-                    </div>
+                    <motion.button whileHover={{ scale: 1.02 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }} className={styles.submitButton} type="submit">{isSubmitting}</motion.button>
                 </form>
                 <h1>{numberOfQuestions}</h1>
             </div>

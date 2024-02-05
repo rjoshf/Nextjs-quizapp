@@ -33,7 +33,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
 
     // Load userAnswers and userScore from localStorage on component mount
     useEffect(() => {
-        console.log(quizzQuestions)
+
         const storedUserAnswers = localStorage.getItem('userAnswers');
         if (storedUserAnswers) {
             setUserAnswers(JSON.parse(storedUserAnswers));

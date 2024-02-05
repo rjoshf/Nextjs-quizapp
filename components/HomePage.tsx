@@ -35,21 +35,20 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <h1>{quizzes.map(quiz => quiz.title)}</h1>
             <nav>
-                <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
+                <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }}>
                     <Link className={styles.startLink} href='/newquiz'>Add new quiz</Link>
                 </motion.div>
             </nav>
             <h1 className={styles.mainTitle}>NextJS Quiz</h1>
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
-                <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
-                    <button className={styles.startLink} onClick={startQuiz}>{startQuizText}</button>
-                </motion.div>
-                <select onChange={quizChangeHandler}>
-                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
-                </select>
+                <motion.button whileHover={{ scale: 1.05 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.1 }} className={styles.startLink} onClick={startQuiz}>{startQuizText}</motion.button>
+                <div className={styles.selectcontainer}>
+                    <select className={styles.quizdropdown} onChange={quizChangeHandler}>
+                        {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                    </select>
+                </div>
             </div>
         </>
     )
