@@ -1,0 +1,14 @@
+.errorContainer {
+    max-width: 25rem;
+    width: auto;
+    margin: auto;
+    padding: 0.1rem;
+    background: #FF6666;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px 4px rgba(12, 5, 32, 0.6);
+    text-align: center;
+}
+
+.errorContainer > p {
+    font-weight: bold;
+}
