@@ -4,8 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import styles from './HomePage.module.css'
 
-import Link from "next/link";
-
 import { motion } from "framer-motion"
 
 import { useEffect, useState } from 'react'
@@ -35,12 +33,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <nav>
-                <motion.div whileHover={{ scale: 1.01 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }}>
-                    <Link className={styles.startLink} href='/newquiz'>Add new quiz</Link>
-                </motion.div>
-            </nav>
-            <h1 className={styles.mainTitle}>NextJS Quiz</h1>
+            <h1 className={styles.mainTitle}>NextQuiz</h1>
             <div className={styles.card}>
                 <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
                 <motion.button whileHover={{ scale: 1.05 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.1 }} className={styles.startLink} onClick={startQuiz}>{startQuizText}</motion.button>

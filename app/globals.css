@@ -8,7 +8,7 @@ html {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 
-  color: #130f40;
+  color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,8 +21,7 @@ html {
 
 body {
   margin: 0;
-  padding: 2rem;
-  background-color: #95afc0;
+  background-color: #FFFFFF;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
