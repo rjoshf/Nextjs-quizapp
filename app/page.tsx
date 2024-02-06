@@ -14,6 +14,8 @@ async function getQuizzes() {
 
   const quizzes = await quizzesCollection.find().toArray();
 
+  client.close();
+
   const updatedQuizzesArray = quizzes.map(quiz => ({
     title: quiz.title,
     questions: quiz.questions,
