@@ -1,5 +1,6 @@
 .question {
-    color: #c1b2dd;
+    color: black;
+    font-weight: 600;
 }
 
 .question h2 {
@@ -32,7 +33,7 @@
     padding: 1rem 2rem;
     border-radius: 24px;
     color: black;
-    background: #6cb7f5;
+    background: #34ace0;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-weight: bold;
@@ -40,5 +41,5 @@
 }
 
 .homebutton:hover {
-    background-color: #027de2;
+    background-color: rgba(46, 170, 223, 0.842);
 }

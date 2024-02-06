@@ -1,8 +1,8 @@
 'use client'
 
+//component imports
 import Question from './Question'
-
-import styles from './Quiz.module.css'
+import Card from './UI/Card';
 
 type quizzQuestions = {
     question: string;
@@ -14,9 +14,9 @@ type quizzQuestions = {
 const Quiz: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions }) => {
 
     return (
-        <div className={styles.quiz}>
+        <Card>
             <Question quizzQuestions={quizzQuestions}></Question>
-        </div>
+        </Card>
     )
 }
 
