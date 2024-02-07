@@ -16,11 +16,18 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     const router = useRouter();
 
     const [hasQuizStarted, setHasQuizStarted] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(quizzes[0].id);
+    const [selectedOption, setSelectedOption] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const storedQuiz = localStorage.getItem('selectedQuiz');
+            return storedQuiz ? JSON.parse(storedQuiz) : quizzes[0].id;
+        } else {
+            return quizzes[0].id;
+        }
+    });
 
     useEffect(() => {
-        if (localStorage.getItem('userAnswers')) {
-            setHasQuizStarted(true)
+        if (localStorage.getItem('selectedQuiz')) {
+            setHasQuizStarted(true);
         }
     }, [])
 
@@ -29,6 +36,9 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     }
 
     function startQuiz() {
+        localStorage.setItem('selectedQuiz', JSON.stringify(selectedOption));
+
+        console.log(selectedOption)
         router.push('/quiz/' + selectedOption);
     }
 
