@@ -71,8 +71,8 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
 
             setTimeout(() => {
                 setAnswerState('')
-            }, 2000)
-        }, 1000)
+            }, 900)
+        }, 900)
     }
 
     const handleSkipAnswer = useCallback(() => {
@@ -96,7 +96,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
                         <h1 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h1>
                         <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h1>
                         <motion.div className={styles.homelink} whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
-                            <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>Return Home</Link>
+                            <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>End Quiz</Link>
                         </motion.div>
                     </motion.div>
                 </>

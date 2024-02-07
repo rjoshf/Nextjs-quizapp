@@ -19,7 +19,7 @@ type quizData = {
 
 const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ onAddQuiz }) => {
 
-    const [isSubmitting, setIsSubmitting] = useState("Create Quiz")
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [duplicateAnswers, setDuplicateAnswers] = useState(false)
 
     const titleInputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +80,11 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
             questions: quizQuestions,
         }
 
-        setIsSubmitting("Creating quiz...")
+        if (isSubmitting === true) {
+            return;
+        }
+
+        setIsSubmitting(true)
         onAddQuiz(quizData)
     };
 
@@ -119,7 +123,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                         </div>
                     ))}
                     {duplicateAnswers && <Error errorTitle="Error: duplicate answers!" errorMessage="All answers must be unique!"></Error>}
-                    <motion.button whileHover={{ scale: 1.02 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }} className={styles.submitButton} type="submit">{isSubmitting}</motion.button>
+                    <motion.button whileHover={{ scale: 1.02 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }} className={styles.submitButton} type="submit">{isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}</motion.button>
                 </form>
             </Card>
         </>
