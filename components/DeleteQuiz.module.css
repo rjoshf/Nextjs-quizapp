@@ -1,0 +1,42 @@
+.title {
+    text-align: center;
+}
+
+.deleteQuizList {
+    text-align: center;
+    padding: 0;
+    list-style-type: none;
+}
+
+.deleteQuizItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background:none; 
+    border:none;     
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    background: #34ace0;
+    font-weight: bold;
+    margin: 1rem 0rem;
+}
+
+.deleteButton {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #fa4444;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.deleteButton:hover {
+    background-color: red;
+}

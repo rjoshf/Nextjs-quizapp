@@ -24,8 +24,6 @@ async function getQuizzes() {
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
-
-
 export default async function deleteQuizPage() {
 
     const quizzes: quizzes = await getQuizzes();

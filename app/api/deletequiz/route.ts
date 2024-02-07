@@ -16,7 +16,7 @@ export async function DELETE(req: NextRequest, res: NextResponse) {
         await quizzesCollection.deleteOne({_id: new ObjectId(id)});
     }
 
-    client.close()
+    client.close();
 
     return new Response("Deleted Quiz");
 }
