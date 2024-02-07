@@ -18,9 +18,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const quizzesCollection = db.collection('Quizzes');
 
         // Insert data into the collection
-        const result = await quizzesCollection.insertOne(data);
-
-        console.log(result);
+        await quizzesCollection.insertOne(data);
 
         // Close the MongoDB connection
         client.close();

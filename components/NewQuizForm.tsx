@@ -66,8 +66,6 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
             answers.some((answer, j) => answers.indexOf(answer) !== j)
         );
 
-        console.log(hasDuplicates);
-
         if (hasDuplicates) {
             console.log("There are duplicate answers in the quiz!");
             hasDuplicates = false;

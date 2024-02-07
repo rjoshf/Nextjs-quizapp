@@ -1,41 +1,45 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #4682B4;
-    padding: 1.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4682B4;
+  padding: 1.5rem 5rem;
 }
 
 .navlink {
-    position: relative;
-    text-decoration: none;
-    color: #D3D3D3;
-    transition: color 0.3s, border-bottom-color 0.3s;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
+  position: relative;
+  text-decoration: none;
+  color: #D3D3D3;
+  transition: color 0.3s, border-bottom-color 0.3s;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.groupednavlinks > .navlink {
+  margin-left: 2.5rem;
+}
   
-  .navlink::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0; /* Start position */
-    background-color: #A9A9A9; /* Change color as needed */
-    transition: width 0.3s ease-in-out, left 0.3s ease-in-out; /* Transition width and left position */
-  }
+.navlink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0; /* Start position */
+  background-color: #A9A9A9; /* Change color as needed */
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out; /* Transition width and left position */
+}
   
-  .navlink:hover::after {
-    width: 100%; /* End width */
-    left: 0; /* End position */
-  }
+.navlink:hover::after {
+  width: 100%; /* End width */
+  left: 0; /* End position */
+}
   
-  .navlink:hover {
-    color: #A9A9A9; /* Change color as needed */
-  }
+.navlink:hover {
+  color: #A9A9A9; /* Change color as needed */
+}
   
-  .navlink:hover::after {
-    width: 100%;
-    background-color: #A9A9A9; /* Change color as needed */
-  }
+.navlink:hover::after {
+  width: 100%;
+  background-color: #A9A9A9; /* Change color as needed */
+}

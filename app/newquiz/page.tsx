@@ -19,7 +19,7 @@ export default function NewQuizPage() {
     const router = useRouter()
 
     const addQuizHandler = async (quizData: quizData) => {
-        // console.log(JSON.stringify(quizData))
+
         await fetch('/api/newquiz', {
             method: 'POST',
             body: JSON.stringify(quizData),
