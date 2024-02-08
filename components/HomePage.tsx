@@ -6,12 +6,16 @@ import styles from './HomePage.module.css'
 
 import { motion } from "framer-motion"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react';
 import Card from './UI/Card';
+
+import { QuizContext } from '@/app/context/store';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
 const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
+
+    const { loadedQuizzes, updateQuizzes } = useContext(QuizContext);
 
     const router = useRouter();
 
@@ -26,10 +30,15 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     });
 
     useEffect(() => {
+        updateQuizzes(quizzes)
         if (localStorage.getItem('selectedQuiz')) {
             setHasQuizStarted(true);
         }
     }, [])
+
+    useEffect(() => {
+        console.log(loadedQuizzes);
+    }, [loadedQuizzes]);
 
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);

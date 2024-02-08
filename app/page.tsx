@@ -4,6 +4,7 @@ import HomePage from "@/components/HomePage";
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
+//fetch database data in server component to keep sensitive details hidden.
 async function getQuizzes() {
   // Connect to MongoDB
   const client = await MongoClient.connect('mongodb+srv://joshW:football101@cluster0.cwcph8s.mongodb.net/quizzes?retryWrites=true&w=majority');

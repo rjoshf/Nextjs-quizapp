@@ -9,10 +9,14 @@ import { motion } from 'framer-motion';
 import { useState } from "react";
 import Modal from "./UI/Modal";
 import DeleteConfirmation from "./UI/DeleteConfirmation";
+import { QuizContext } from '@/app/context/store';
+import { useContext } from 'react';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
 const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
+    const { loadedQuizzes, updateQuizzes } = useContext(QuizContext);
+
     const router = useRouter()
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState("");
@@ -31,11 +35,12 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         setIsDeleting(true);
         await fetch(`/api/deletequiz?id=${selectedId}`, {
             method: 'DELETE',
-        })
+        });
+        updateQuizzes(loadedQuizzes.filter(quiz => quiz.id !== selectedId))
         router.refresh();
         //clean up
         setIsDeleting(false);
-        setSelectedId('');
+        setSelectedId("");
     }
 
 
