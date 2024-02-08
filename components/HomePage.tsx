@@ -36,10 +36,6 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         }
     }, [])
 
-    useEffect(() => {
-        console.log(loadedQuizzes);
-    }, [loadedQuizzes]);
-
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);
     }
