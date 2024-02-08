@@ -20,22 +20,19 @@
 }
 
 .startLink {
-    display: block;
-    background:none; 
-    border:none;     
-    width: 33%;
-    margin: auto;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    border-radius: 24px;
-    color: black;
-    background: #34ace0;
+    font: inherit;
+    width: 30%;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #34ace0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
     font-weight: bold;
     text-decoration: none;
 }
+
 
 .startLink:hover {
     background-color: rgba(46, 170, 223, 0.842);

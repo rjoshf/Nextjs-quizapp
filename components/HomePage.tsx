@@ -47,13 +47,13 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             <h1 className={styles.mainTitle}>NextQuiz</h1>
             <Card>
                 <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
-                {!hasQuizStarted && <><motion.button whileHover={{ scale: 1.01 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.1 }} className={styles.startLink} onClick={startQuiz}>Start Quiz</motion.button>
+                {!hasQuizStarted && <><motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Start Quiz</motion.button>
                     <div className={styles.selectcontainer}>
                         <select className={styles.quizdropdown} onChange={quizChangeHandler}>
                             {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
                         </select>
                     </div></>}
-                {hasQuizStarted && <motion.button whileHover={{ scale: 1.01 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.1 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
+                {hasQuizStarted && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
             </Card>
         </>
     )

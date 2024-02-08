@@ -29,7 +29,7 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             <h1 className={styles.title}>Delete a quiz</h1>
             <Card>
                 <ul className={styles.deleteQuizList}>
-                    {quizzes.map(quiz => <li className={styles.deleteQuizItem} key={quiz.id}><div>{quiz.title}</div><motion.button whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 150 }} className={styles.deleteButton} onClick={() => quizDeleteHandler(quiz.id)}>Delete Quiz</motion.button></li>)}
+                    {quizzes.map(quiz => <li className={styles.deleteQuizItem} key={quiz.id}><div>{quiz.title}</div><motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.deleteButton} onClick={() => quizDeleteHandler(quiz.id)}>Delete Quiz</motion.button></li>)}
                 </ul>
             </Card>
         </>
