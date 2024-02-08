@@ -1,0 +1,55 @@
+.deleteConfirmation {
+    padding: 1rem;
+  }
+  
+.deleteConfirmation h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0.5rem;
+}
+  
+.deleteConfirmation p {
+    margin: 0 auto;
+    padding: 0.5rem;
+    font-size: 1.15rem;
+    max-width: 38ch;
+}
+  
+.confirmationActions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cancelButton {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #34ace0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.confirmButton {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #fa4444;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.confirmButton:hover {
+    background-color: red;
+}
+
+.cancelButton:hover {
+    background-color: rgba(46, 170, 223, 0.842);
+}
