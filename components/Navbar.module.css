@@ -36,10 +36,10 @@
 }
   
 .navlink:hover {
-  color: #A9A9A9; /* Change color as needed */
+  color: #FFFFFF; /* Change color as needed */
 }
   
 .navlink:hover::after {
   width: 100%;
-  background-color: #A9A9A9; /* Change color as needed */
+  background-color: #FFFFFF; /* Change color as needed */
 }

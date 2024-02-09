@@ -88,42 +88,48 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
 
     return (
         <>
-            <h1 className={styles.newquiztitle}>Add a new quiz</h1>
-            <Card>
-                <form onSubmit={newQuizHandler}>
-                    <div>
-                        <label className={styles.label} htmlFor="title">Quiz Title: </label>
-                        <input required className={styles.input} type="text" id="title" ref={titleInputRef} />
-                    </div>
-                    <div>
-                        <label className={styles.label} htmlFor="numberofquestions">Enter the number of questions:</label>
-                        <select className={styles.input} id="numberofquestions" onChange={questionChangeHandler}>
-                            {Array.from({ length: 10 }, (_, index) => (
-                                <option key={index + 1} value={index + 1}>
-                                    {index + 1}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    {[...Array(numberOfQuestions)].map((_, questionIndex) => (
-                        <div key={questionIndex}>
-                            <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
-                            <input required className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
-
-                            {[...Array(4)].map((_, answerIndex) => (
-                                <div key={answerIndex}>
-                                    <label className={styles.label} htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
-                                        {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
-                                    </label>
-                                    <input required className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
-                                </div>
-                            ))}
+            <section className={styles.newquiz}>
+                <h1 className={styles.newquiztitle}>Add a new quiz</h1>
+                <Card>
+                    <form onSubmit={newQuizHandler}>
+                        <div className={styles.quizDetailsCard}>
+                            <div>
+                                <label className={styles.label} htmlFor="title">Quiz Title: </label>
+                                <input required className={styles.input} type="text" id="title" ref={titleInputRef} />
+                            </div>
+                            <div>
+                                <label className={styles.label} htmlFor="numberofquestions">Enter the number of questions:</label>
+                                <select className={styles.input} id="numberofquestions" onChange={questionChangeHandler}>
+                                    {Array.from({ length: 10 }, (_, index) => (
+                                        <option key={index + 1} value={index + 1}>
+                                            {index + 1}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
-                    ))}
-                    {duplicateAnswers && <Error errorTitle="Error: duplicate answers!" errorMessage="All answers must be unique!"></Error>}
-                    <motion.button whileHover={{ scale: 1.02 }} transition={{ type: 'spring', ease: "easeOut", duration: 0.2 }} className={styles.submitButton} type="submit">{isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}</motion.button>
-                </form>
-            </Card>
+                        {[...Array(numberOfQuestions)].map((_, questionIndex) => (
+                            <div className={styles.questionCard}>
+                                <div key={questionIndex}>
+                                    <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
+                                    <input required className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
+
+                                    {[...Array(4)].map((_, answerIndex) => (
+                                        <div key={answerIndex}>
+                                            <label className={styles.label} htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
+                                                {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
+                                            </label>
+                                            <input required className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                        {duplicateAnswers && <Error errorTitle="Error: duplicate answers!" errorMessage="All answers must be unique!"></Error>}
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.submitButton} type="submit">{isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}</motion.button>
+                    </form>
+                </Card>
+            </section>
         </>
     );
 };
