@@ -19,7 +19,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     const router = useRouter();
 
-    const [hasQuizStarted, setHasQuizStarted] = useState(false);
+    const [hasQuizStarted, setHasQuizStarted] = useState<boolean>();
     const [selectedOption, setSelectedOption] = useState(() => {
         if (typeof window !== 'undefined') {
             const storedQuiz = localStorage.getItem('selectedQuiz');
@@ -33,6 +33,8 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         updateQuizzes(quizzes)
         if (localStorage.getItem('selectedQuiz')) {
             setHasQuizStarted(true);
+        } else {
+            setHasQuizStarted(false);
         }
     }, [])
 
@@ -46,6 +48,9 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         }
         updateQuizTimer(+event.target.value * 1000)
         console.log(quizTimer)
+        if (!localStorage.getItem('quizTimer')) {
+            localStorage.setItem('quizTimer', String(+event.target.value * 1000))
+        }
     }
 
     function startQuiz(event: React.FormEvent) {
@@ -59,7 +64,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             <h1 className={styles.mainTitle}>NextQuiz</h1>
             <Card>
                 <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
-                {!hasQuizStarted && <>
+                {hasQuizStarted === false && <>
                     <form onSubmit={startQuiz} className={styles.content}>
                         <label className={styles.label} htmlFor='quizselection'>Select a quiz:</label>
                         <div className={styles.selectcontainer}>
@@ -69,12 +74,12 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                             <span className={styles.customarrow}></span>
                         </div>
                         <div>
-                            <label className={styles.label} htmlFor='quiztime'>Time available for each question</label>
+                            <label className={styles.label} htmlFor='quiztime'>Time for each question:</label>
                             <input required onChange={timeChangeHandler} id='quiztime' type="number" inputMode='numeric' max="60" min="10" step="10"></input>
                         </div>
                         <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>Start Quiz</motion.button>
                     </form></>}
-                {hasQuizStarted && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
+                {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
             </Card>
         </>
     )

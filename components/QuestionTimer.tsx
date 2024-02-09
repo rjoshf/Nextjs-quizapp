@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styles from './QuestionTimer.module.css'
+import React, { useState, useEffect, useContext } from "react";
+import styles from './QuestionTimer.module.css';
+import { QuizContext } from "@/app/context/store";
 
 const QuestionTimer: React.FC<{ onTimeout: () => void; }> = ({ onTimeout }) => {
-    const storedData = localStorage.getItem('quizData');
-
-    // Safely parse storedData and ensure it has a valid timer property
-    let quizTimer = 0; // Default to 0 or any other default timer value you prefer
-    if (storedData) {
-        const storedDataObject = JSON.parse(storedData);
-        // Ensure storedDataObject has a timer property and it's a number
-        if (storedDataObject && typeof storedDataObject.timer === 'number') {
-            quizTimer = storedDataObject.timer;
-        }
-    }
+    const { quizTimer } = useContext(QuizContext)
 
     // State keeping track of the remaining time on the question.
     const [remainingTime, setRemainingTime] = useState(quizTimer);
@@ -31,9 +22,11 @@ const QuestionTimer: React.FC<{ onTimeout: () => void; }> = ({ onTimeout }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setRemainingTime(prevRemainingTime => {
-                const newRemainingTime = prevRemainingTime - 50;
-                localStorage.setItem('remainingTime', JSON.stringify(newRemainingTime));
-                return newRemainingTime;
+                if (prevRemainingTime) {
+                    const newRemainingTime = prevRemainingTime - 50;
+                    localStorage.setItem('remainingTime', JSON.stringify(newRemainingTime));
+                    return newRemainingTime;
+                }
             });
         }, 50);
 

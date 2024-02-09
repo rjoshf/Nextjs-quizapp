@@ -15,6 +15,7 @@ import { useContext } from 'react';
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[];
 
 const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
+
     const { updateQuizzes } = useContext(QuizContext);
 
     const router = useRouter()
@@ -36,14 +37,13 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         await fetch(`/api/deletequiz?id=${selectedId}`, {
             method: 'DELETE',
         });
-        //update context using the localstorage
+        //update context
         updateQuizzes(quizzes.filter(quiz => quiz.id !== selectedId));
         router.refresh();
         //clean up
         setIsDeleting(false);
         setSelectedId("");
     }
-
 
     return (
         <>

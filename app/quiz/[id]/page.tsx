@@ -2,46 +2,41 @@
 
 import Header from "@/components/Header";
 import Quiz from "@/components/Quiz";
-import { QuizContext } from '@/app/context/store';
-import { useContext, useState, useEffect } from 'react';
-
-type Quiz = { title: string; questions: { question: string; answers: { answer: string }[] }[]; id: string };
+import { useRouter } from "next/navigation";
 
 export default function QuizPage({ params }: { params: { id: string } }) {
-    const { loadedQuizzes, quizTimer } = useContext(QuizContext);
 
-    const selectedQuiz = loadedQuizzes.find((quiz) => quiz.id === params.id);
+    //we reach out to local storage here so the data stays on page reload, otherwise whilst reloading the page shows quiz not found as selectedQuiz is undefined.
+    const loadedQuizzesString = localStorage.getItem("loadedQuizzes");
 
-    // Initialize storedQuiz and storedTimer from localStorage if available or fallback to null
-    const [storedQuiz, setStoredQuiz] = useState<{ quiz: Quiz, timer: number } | null>(() => {
-        const storedData = localStorage.getItem('quizData');
-        return storedData ? JSON.parse(storedData) : null;
-    });
+    // Parse the string into an array of objects
+    const loadedQuizzes = loadedQuizzesString ? JSON.parse(loadedQuizzesString) : [];
 
-    useEffect(() => {
-        // Only update localStorage and state if selectedQuiz is not null and quizTimer is defined
-        if (selectedQuiz && quizTimer !== undefined) {
-            const quizData = { quiz: selectedQuiz, timer: quizTimer };
-            localStorage.setItem('quizData', JSON.stringify(quizData));
-            setStoredQuiz(quizData);
-        } else if (!storedQuiz) {
-            // Attempt to load from localStorage only if storedQuiz hasn't been set
-            const storedData = localStorage.getItem('quizData');
-            if (storedData) {
-                setStoredQuiz(JSON.parse(storedData));
-            }
+    // Check if selectedQuiz is defined before accessing its properties
+    const selectedQuiz = loadedQuizzes.find((quiz: { id: string }) => quiz.id === params.id);
+
+    if (!selectedQuiz) {
+        const router = useRouter();
+        // Handle the case where selectedQuiz is undefined
+        const resetHandler = () => {
+            localStorage.clear();
+            router.push("/");
+            router.refresh();
         }
-    }, [selectedQuiz, quizTimer]); // Depend on selectedQuiz and quizTimer to re-run when they change
 
-    if (!storedQuiz) {
-        return <div>Loading...</div>; // Or some other loading/error state
+        return (
+            <>
+                <p>Quiz not found!</p>
+                <button onClick={resetHandler}>Reset quizzes</button>
+            </>
+        );
     }
 
     return (
         <>
-            <Header quizName={storedQuiz.quiz.title}></Header>
+            <Header quizName={selectedQuiz.title}></Header>
             <main>
-                <Quiz quizzQuestions={storedQuiz.quiz.questions}></Quiz>
+                <Quiz quizzQuestions={selectedQuiz.questions}></Quiz>
             </main>
         </>
     );

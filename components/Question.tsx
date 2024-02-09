@@ -1,10 +1,12 @@
 import styles from './Question.module.css'
 
 import QuestionTimer from "./QuestionTimer";
-import Answers from './Answers'
+import Answers from './Answers';
 
-import { useState, useCallback, useEffect } from 'react'
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { useState, useCallback, useEffect, useContext } from 'react';
+import { QuizContext } from "@/app/context/store";
 import { motion } from 'framer-motion'
 
 type quizzQuestions = {
@@ -16,6 +18,8 @@ type quizzQuestions = {
 
 
 const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions }) => {
+    const { quizTimer } = useContext(QuizContext);
+    const router = useRouter();
 
     //Initialising values for userAnswers and userScore states.
     const getLocalStorageItem = (key: string) => {
@@ -57,7 +61,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
     const answers = quizzQuestions[activeQuestionIndex]?.answers.map(answers => answers.answer)
 
     const handleSelectAnswer = (selectedAnswer: string) => {
-        localStorage.removeItem('remainingTime');
+        localStorage.setItem('remainingTime', String(quizTimer));
         setAnswerState('answered');
         setUserAnswers(prevState => [...prevState, selectedAnswer]);
 
@@ -77,8 +81,14 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
 
     const handleSkipAnswer = useCallback(() => {
         setUserAnswers(prevState => [...prevState, "question skipped"])
-        localStorage.removeItem('remainingTime');
-    }, [])
+        localStorage.setItem('remainingTime', String(quizTimer));
+    }, []);
+
+    const endQuiz = () => {
+        localStorage.clear();
+        router.push("/");
+        router.refresh();
+    }
 
     return (
         <>
@@ -95,9 +105,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
                         <h1 className={styles.resultstitle}>Quiz Completed!</h1>
                         <h1 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h1>
                         <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h1>
-                        <motion.div className={styles.homelink} whileHover={{ scale: 1.01 }} transition={{ type: 'spring', stiffness: 150 }}>
-                            <Link className={styles.homebutton} href='/' onClick={() => localStorage.clear()}>End Quiz</Link>
-                        </motion.div>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.homebutton} onClick={endQuiz}>End Quiz</motion.button>
                     </motion.div>
                 </>
             )

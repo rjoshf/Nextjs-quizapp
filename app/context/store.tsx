@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 
 type Quiz = { title: string; questions: { question: string; answers: { answer: string }[] }[]; id: string };
 
@@ -19,6 +19,28 @@ const initialContext: QuizContextType = {
     updateQuizTimer: () => { },
 };
 
+const getInitialQuizState = () => {
+    if (typeof window !== 'undefined') {
+        const loadedQuizzes = localStorage.getItem("loadedQuizzes");
+        return loadedQuizzes ? JSON.parse(loadedQuizzes) : [];
+    }
+    return [];
+}
+
+const getInitialTimerState = () => {
+    if (typeof window !== 'undefined') {
+        const quizTimer = localStorage.getItem("quizTimer");
+        console.log("quizTimer from localStorage:", quizTimer);
+        try {
+            return quizTimer ? JSON.parse(quizTimer) : undefined;
+        } catch (error) {
+            console.error("Error parsing quizTimer JSON:", error);
+            return undefined;
+        }
+    }
+    return undefined;
+}
+
 export const QuizContext = createContext<QuizContextType>(initialContext);
 
 type QuizProviderProps = {
@@ -26,9 +48,17 @@ type QuizProviderProps = {
 };
 
 export const QuizProvider = ({ children }: QuizProviderProps) => {
-    const [loadedQuizzes, setQuizzes] = useState<Quiz[]>([]);
+    const [loadedQuizzes, setQuizzes] = useState<Quiz[]>(getInitialQuizState);
     // Initialize quizTimer with undefined
-    const [quizTimer, setQuizTimer] = useState<number | undefined>(undefined);
+    const [quizTimer, setQuizTimer] = useState<number | undefined>(getInitialTimerState);
+
+    useEffect(() => {
+        localStorage.setItem("loadedQuizzes", JSON.stringify(loadedQuizzes))
+    }, [loadedQuizzes])
+
+    useEffect(() => {
+        localStorage.setItem("quizTimer", JSON.stringify(quizTimer))
+    }, [quizTimer])
 
     const updateQuizzes = (quizzes: Quiz[]) => {
         setQuizzes(quizzes);
