@@ -84,7 +84,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
         <>
             {!quizIsComplete && <motion.div key={activeQuestionIndex} initial={{ opacity: 0.5 }}
                 animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
-                {answerState === '' && <QuestionTimer key={activeQuestionIndex} timeout={10000} onTimeout={handleSkipAnswer}></QuestionTimer>}
+                {answerState === '' && <QuestionTimer key={activeQuestionIndex} onTimeout={handleSkipAnswer}></QuestionTimer>}
                 <h2>{quizzQuestions[activeQuestionIndex]?.question}</h2>
                 <Answers answers={answers} answerState={answerState} userAnswers={userAnswers} handleSelectAnswer={handleSelectAnswer}></Answers>
             </motion.div>}

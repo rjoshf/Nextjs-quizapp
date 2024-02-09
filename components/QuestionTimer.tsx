@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from "react";
 import styles from './QuestionTimer.module.css'
 
-const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ timeout, onTimeout }) => {
-    // State keeping track of the remaining time on the question.
-    const [remainingTime, setRemainingTime] = useState(timeout);
+const QuestionTimer: React.FC<{ onTimeout: () => void; }> = ({ onTimeout }) => {
+    const storedData = localStorage.getItem('quizData');
 
-    // Setting the timer for a question and triggering the onTimeout function when time is up.
+    // Safely parse storedData and ensure it has a valid timer property
+    let quizTimer = 0; // Default to 0 or any other default timer value you prefer
+    if (storedData) {
+        const storedDataObject = JSON.parse(storedData);
+        // Ensure storedDataObject has a timer property and it's a number
+        if (storedDataObject && typeof storedDataObject.timer === 'number') {
+            quizTimer = storedDataObject.timer;
+        }
+    }
+
+    // State keeping track of the remaining time on the question.
+    const [remainingTime, setRemainingTime] = useState(quizTimer);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             onTimeout();
-            setRemainingTime(timeout); // Reset remaining time on timeout
+            setRemainingTime(quizTimer); // Reset remaining time on timeout
         }, remainingTime);
 
-        // Clean up function
         return () => {
             clearTimeout(timer);
         };
-    }, [remainingTime, timeout, onTimeout]);
+    }, [remainingTime, quizTimer, onTimeout]);
 
-    // Setting up intervals in which time is deducted from the time left for the question and storing it in local storage.
     useEffect(() => {
-
         const interval = setInterval(() => {
             setRemainingTime(prevRemainingTime => {
                 const newRemainingTime = prevRemainingTime - 50;
@@ -34,15 +42,13 @@ const QuestionTimer: React.FC<{ timeout: number; onTimeout: () => void; }> = ({ 
             setRemainingTime(JSON.parse(storedTimeRemaining));
         }
 
-        // Clean up function
         return () => {
             clearInterval(interval);
         };
     }, []);
 
-    // JSX displaying the time progress bar on each question.
     return (
-        <progress className={styles.questiontime} value={remainingTime} max={timeout}></progress>
+        <progress className={styles.questiontime} value={remainingTime} max={quizTimer}></progress>
     );
 }
 
