@@ -16,7 +16,7 @@
 .cardTitle{
     color: black;
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .startLink {
@@ -38,7 +38,72 @@
     background-color: rgba(46, 170, 223, 0.842);
 }
 
-.quizdropdown {
-    overflow-y: scroll;
-    height: auto;
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectcontainer > select {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    font-size: 1.25rem;
+    padding: 1em 4em 1em 1.5em;
+    background-color: #34ace0;
+    color: black;
+    border: 0;
+}
+
+.selectcontainer {
+    width: fit-content;
+    position: relative;
+    text-align: center;
+}
+
+.customarrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background: #0662ad;
+    height: 100%;
+    width: 4em;
+    pointer-events: none;
+}
+
+.customarrow::before,
+.customarrow::after {
+    --size: 0.65em;
+
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.customarrow::before {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid rgba(255,255,255,0.5);
+
+    top: 40%;
+}
+
+.customarrow::after {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid rgba(255, 255, 255, 0.5);
+
+    top: 60%;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: block;
+    margin: 1rem 0rem 1rem 0rem;
 }
