@@ -30,7 +30,9 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     });
 
     useEffect(() => {
+        //load quizzes into the
         updateQuizzes(quizzes)
+
         if (localStorage.getItem('selectedQuiz')) {
             setHasQuizStarted(true);
         } else {
@@ -42,20 +44,16 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);
     }
 
-    const timeChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (+event.target.value < 10 || +event.target.value > 60) {
-            return;
-        }
+    const timeChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         updateQuizTimer(+event.target.value * 1000)
-        console.log(quizTimer)
-        if (!localStorage.getItem('quizTimer')) {
-            localStorage.setItem('quizTimer', String(+event.target.value * 1000))
-        }
     }
 
     function startQuiz(event: React.FormEvent) {
         event.preventDefault();
         localStorage.setItem('selectedQuiz', JSON.stringify(selectedOption));
+        if (!localStorage.getItem('quizTimer')) {
+            updateQuizTimer(10000);
+        }
         router.push('/quiz/' + selectedOption);
     }
 
@@ -75,7 +73,17 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                         </div>
                         <div>
                             <label className={styles.label} htmlFor='quiztime'>Time for each question:</label>
-                            <input required onChange={timeChangeHandler} id='quiztime' type="number" inputMode='numeric' max="60" min="10" step="10"></input>
+                            <div className={styles.selectcontainer}>
+                                <select defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
+                                    <option key={10}>10</option>
+                                    <option key={20}>20</option>
+                                    <option key={30}>30</option>
+                                    <option key={40}>40</option>
+                                    <option key={50}>50</option>
+                                    <option key={60}>60</option>
+                                </select>
+                                <span className={styles.customarrow}></span>
+                            </div>
                         </div>
                         <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>Start Quiz</motion.button>
                     </form></>}
