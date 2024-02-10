@@ -73,7 +73,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                         </div>
                         <label className={styles.label} htmlFor='quiztime'>Time for each question (seconds):</label>
                         <div className={styles.selectcontainer}>
-                            <select defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
+                            <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
                                 <option key={10}>10</option>
                                 <option key={20}>20</option>
                                 <option key={30}>30</option>

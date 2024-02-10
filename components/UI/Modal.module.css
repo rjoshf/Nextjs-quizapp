@@ -1,6 +1,6 @@
 .backdrop {
     position: fixed;
-    top: 0;
+    top: 0; 
     left: 0;
     z-index: 1;
     width: 100%;
@@ -9,11 +9,18 @@
 }
   
 .modal {
-    min-width: 30rem;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     font-weight: bold;
     z-index: 2;
     background: #4682B4;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     animation: slide-down-fade-in 0.3s ease-out forwards;
+    padding: 20px; 
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
 }
