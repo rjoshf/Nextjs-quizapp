@@ -1,14 +1,7 @@
-import React, { useRef, useEffect, MouseEvent } from 'react';
+import React, { useRef, MouseEvent } from 'react';
 import styles from './Modal.module.css';
 
-// Define the type for the component props
-interface ModalProps {
-    open: boolean;
-    children: React.ReactNode;
-    onClose: () => void;
-}
-
-const Modal: React.FC<ModalProps> = ({ open, children, onClose }) => {
+const Modal: React.FC<{ open: boolean; children: React.ReactNode; onClose: () => void }> = ({ open, children, onClose }) => {
     const dialogRef = useRef<HTMLDivElement>(null);
     const handleDialogClick = (event: MouseEvent) => {
         event.stopPropagation(); // Prevent click from propagating to the backdrop
