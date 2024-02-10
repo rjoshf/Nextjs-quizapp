@@ -1,4 +1,5 @@
 
+
 .mainTitle {
     text-align: center;
 }
@@ -20,8 +21,9 @@
 }
 
 .startLink {
+    margin-top: 2rem;
     font: inherit;
-    width: 30%;
+    width: 40%;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem 1.5rem;
@@ -46,6 +48,7 @@
 }
 
 .selectcontainer > select {
+    width: 100%;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     font-size: 1.25rem;
     padding: 1em 4em 1em 1.5em;
@@ -54,8 +57,12 @@
     border: 0;
 }
 
+.selectcontainer > select:focus {
+    outline: none;
+}
+
 .selectcontainer {
-    width: fit-content;
+    width: 40%;
     position: relative;
     text-align: center;
 }
