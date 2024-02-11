@@ -59,34 +59,36 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <h1 className={styles.mainTitle}>NextQuiz</h1>
-            <Card>
-                <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
-                {hasQuizStarted === false && <>
-                    <form onSubmit={startQuiz} className={styles.content}>
-                        <label className={styles.label} htmlFor='quizselection'>Select a quiz:</label>
-                        <div className={styles.selectcontainer}>
-                            <select required id='quizselection' onChange={quizChangeHandler}>
-                                {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
-                            </select>
-                            <span className={styles.customarrow}></span>
-                        </div>
-                        <label className={styles.label} htmlFor='quiztime'>Time for each question (seconds):</label>
-                        <div className={styles.selectcontainer}>
-                            <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
-                                <option key={10}>10</option>
-                                <option key={20}>20</option>
-                                <option key={30}>30</option>
-                                <option key={40}>40</option>
-                                <option key={50}>50</option>
-                                <option key={60}>60</option>
-                            </select>
-                            <span className={styles.customarrow}></span>
-                        </div>
-                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>Start Quiz</motion.button>
-                    </form></>}
-                {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
-            </Card>
+            <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+                <h1 className={styles.mainTitle}>NextQuiz</h1>
+                <Card>
+                    <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
+                    {hasQuizStarted === false && <>
+                        <form onSubmit={startQuiz} className={styles.content}>
+                            <label className={styles.label} htmlFor='quizselection'>Select a quiz:</label>
+                            <div className={styles.selectcontainer}>
+                                <select required id='quizselection' onChange={quizChangeHandler}>
+                                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                                </select>
+                                <span className={styles.customarrow}></span>
+                            </div>
+                            <label className={styles.label} htmlFor='quiztime'>Time for each question (seconds):</label>
+                            <div className={styles.selectcontainer}>
+                                <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
+                                    <option key={10}>10</option>
+                                    <option key={20}>20</option>
+                                    <option key={30}>30</option>
+                                    <option key={40}>40</option>
+                                    <option key={50}>50</option>
+                                    <option key={60}>60</option>
+                                </select>
+                                <span className={styles.customarrow}></span>
+                            </div>
+                            <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>Start Quiz</motion.button>
+                        </form></>}
+                    {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
+                </Card>
+            </motion.div>
         </>
     )
 
