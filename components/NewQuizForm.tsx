@@ -49,7 +49,6 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
             for (let j = 0; j < 4; j++) {
                 const answer = answerInputRefs[i][j].current?.value;
                 answers.push({ answer });
-                let answerArray = answers.map(answer => answer.answer)
             }
 
             quizQuestions.push({
@@ -88,7 +87,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
 
     return (
         <>
-            <section className={styles.newquiz}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
@@ -129,7 +128,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                         <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.submitButton} type="submit">{isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}</motion.button>
                     </form>
                 </Card>
-            </section>
+            </motion.section>
         </>
     );
 };
