@@ -59,7 +59,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
                 <h1 className={styles.mainTitle}>NextQuiz</h1>
                 <Card>
                     <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
@@ -88,7 +88,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                         </form></>}
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
-            </motion.div>
+            </motion.section>
         </>
     )
 
