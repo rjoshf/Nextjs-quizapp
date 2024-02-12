@@ -7,9 +7,10 @@ import styles from './HomePage.module.css'
 import { motion } from "framer-motion"
 
 import { useEffect, useState, useContext } from 'react';
-import Card from './UI/Card';
+import Card from '../UI/Card';
 
 import { QuizContext } from '@/app/context/store';
+import InfoSection from './InfoSection';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
@@ -63,7 +64,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     return (
         <>
             <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
-                <h1 className={styles.mainTitle}>NextQuiz</h1>
+                <h1 className={styles.mainTitle}>NEXTQUIZ</h1>
                 <Card>
                     <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
                     {hasQuizStarted === false && <>
@@ -92,11 +93,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
             </motion.section>
-            <div className={styles["custom-shape-divider-bottom-1707761150"]}>
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className={styles["shape-fill"]}></path>
-                </svg>
-            </div>
+            <InfoSection></InfoSection>
         </>
     )
 

@@ -1,0 +1,49 @@
+
+.infoSection {
+    margin-top: 5rem;
+    background-color: #4682B4;
+    color: white;
+    text-align: center;
+}
+
+.infoTitle {
+    padding: 3rem;
+    font-size: 2.75rem;
+    margin: 0;
+}
+
+.infoList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.listItem {
+    border: white solid 2px;
+    margin: 2rem;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px 4px rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.infoContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoContent > * {
+    padding: 2rem;
+    margin: 0 8rem;
+}
+
+.listItemContainer {
+    width: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    width: 5rem;
+    height: 5rem;
+}

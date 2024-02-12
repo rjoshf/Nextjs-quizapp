@@ -1,5 +1,9 @@
 .mainTitle {
     text-align: center;
+    font-size: 2.75rem;
+    background-image: linear-gradient(43deg, #4682B4 46%, #75b6eb 100%);
+    background-clip: text;
+    color: transparent;
 }
 
 .card {
@@ -111,25 +115,4 @@
     font-size: 1.2rem;
     display: block;
     margin: 1rem 0rem 1rem 0rem;
-}
-
-.custom-shape-divider-bottom-1707761150 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1707761150 svg {
-    position: relative;
-    display: block;
-    width: calc(115% + 1.3px);
-    height: 309px;
-}
-
-.custom-shape-divider-bottom-1707761150 .shape-fill {
-    fill: #4682B4;
 }

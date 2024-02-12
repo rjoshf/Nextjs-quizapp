@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-import HomePage from "@/components/HomePage";
+import HomePage from "@/components/HomePage/HomePage";
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
