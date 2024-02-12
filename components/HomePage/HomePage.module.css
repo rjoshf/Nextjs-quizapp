@@ -6,20 +6,13 @@
     color: transparent;
 }
 
-.card {
-    max-width: 50rem;
-    margin: auto;
-    padding: 2rem;
-    background: #4682B4;
-    border-radius: 8px;
-    box-shadow: 1px 1px 8px 4px rgba(12, 5, 32, 0.6);
-    text-align: center;
-}
-
 .cardTitle{
-    color: black;
     margin-top: 0;
     margin-bottom: 1rem;
+}
+
+.quizCard {
+    height: 450px;
 }
 
 .startLink {

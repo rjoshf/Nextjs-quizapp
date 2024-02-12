@@ -87,7 +87,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
 
     return (
         <>
-            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
@@ -108,8 +108,8 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
                             </div>
                         </div>
                         {[...Array(numberOfQuestions)].map((_, questionIndex) => (
-                            <div className={styles.questionCard}>
-                                <div key={questionIndex}>
+                            <div key={questionIndex} className={styles.questionCard}>
+                                <div>
                                     <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
                                     <input required className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
 

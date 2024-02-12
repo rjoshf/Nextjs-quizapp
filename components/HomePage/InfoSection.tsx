@@ -7,35 +7,39 @@ import { IoSpeedometerOutline } from "react-icons/io5";
 import { HiMiniDevicePhoneMobile } from "react-icons/hi2";
 import { IoIosCreate } from "react-icons/io";
 
+import { motion } from 'framer-motion';
+
 const InfoSection: React.FC<{}> = ({ }) => {
 
     return (
         <section className={styles.infoSection}>
             <h1 className={styles.infoTitle}>Where knowledge meets fun.</h1>
             <div className={styles.infoContent}>
-                <Image width={500} height={500} src={quizSVG} alt={"/"}></Image>
+                <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+                    <Image width={500} height={500} src={quizSVG} alt={"/"}></Image>
+                </motion.div>
                 <ul className={styles.infoList}>
-                    <div key="create" className={styles.listItemContainer}>
+                    <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} key="create" className={styles.listItemContainer}>
                         <IoIosCreate className={styles.icon} />
                         <li className={styles.listItem}>
                             <h2>Create</h2>
                             <p>Create your own unique quizzes!</p>
                         </li>
-                    </div>
-                    <div key="fast" className={styles.listItemContainer}>
+                    </motion.div>
+                    <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} key="fast" className={styles.listItemContainer}>
                         <IoSpeedometerOutline className={styles.icon}></IoSpeedometerOutline>
                         <li className={styles.listItem}>
-                            <h2>Speed</h2>
+                            <h2>Fast</h2>
                             <p>Create and start quizzes with speed!</p>
                         </li>
-                    </div>
-                    <div key="responsive" className={styles.listItemContainer}>
+                    </motion.div>
+                    <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} key="responsive" className={styles.listItemContainer}>
                         <HiMiniDevicePhoneMobile className={styles.icon} />
                         <li className={styles.listItem}>
                             <h2>Responsive</h2>
                             <p>Do your favourite quizzes on mobile too!</p>
                         </li>
-                    </div>
+                    </motion.div>
                 </ul>
             </div >
         </section >

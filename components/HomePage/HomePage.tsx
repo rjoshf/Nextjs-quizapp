@@ -16,7 +16,7 @@ type quizzes = { title: string; questions: { question: string; answers: { answer
 
 const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
-    const { updateQuizzes, updateQuizTimer, quizTimer } = useContext(QuizContext);
+    const { updateQuizzes, updateQuizTimer } = useContext(QuizContext);
 
     const router = useRouter();
 
@@ -63,9 +63,9 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
                 <h1 className={styles.mainTitle}>NEXTQUIZ</h1>
-                <Card>
+                <Card className={styles.quizCard}>
                     <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
                     {hasQuizStarted === false && <>
                         <form onSubmit={startQuiz} className={styles.content}>
