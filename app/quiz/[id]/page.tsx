@@ -1,7 +1,7 @@
 'use client'
 
-import Header from "@/components/Header";
-import Quiz from "@/components/Quiz";
+import Header from "@/components/QuizPage/Header";
+import Quiz from "@/components/QuizPage/Quiz";
 import { useRouter } from "next/navigation";
 
 export default function QuizPage({ params }: { params: { id: string } }) {

@@ -1,6 +1,6 @@
 'use client'
 
-import DeleteQuiz from '@/components/DeleteQuiz';
+import DeleteQuiz from '@/components/DeleteQuizPage/DeleteQuiz';
 import { QuizContext } from '@/app/context/store';
 import { useContext } from 'react';
 

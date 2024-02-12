@@ -1,6 +1,6 @@
 'use client'
 
-import NewQuizForm from "@/components/NewQuizForm";
+import NewQuizForm from "@/components/NewQuizPage/NewQuizForm";
 import { useRouter } from "next/navigation";
 
 type quizData = {

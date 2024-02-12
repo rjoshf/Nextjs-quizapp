@@ -1,14 +1,14 @@
 'use client'
 import { useRouter } from "next/navigation";
 
-import Card from "./UI/Card";
+import Card from "../UI/Card";
 
 import styles from './DeleteQuiz.module.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from "react";
-import Modal from "./UI/Modal";
-import DeleteConfirmation from "./UI/DeleteConfirmation";
+import Modal from "../UI/Modal";
+import DeleteConfirmation from "../UI/DeleteConfirmation";
 import { QuizContext } from '@/app/context/store';
 import { useContext, useEffect } from 'react';
 

@@ -2,7 +2,7 @@
 
 //component imports
 import Question from './Question'
-import Card from './UI/Card';
+import Card from '../UI/Card';
 
 type quizzQuestions = {
     question: string;

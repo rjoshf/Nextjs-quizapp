@@ -4,8 +4,8 @@ import styles from './NewQuizForm.module.css'
 import { useRef, useState } from 'react'
 
 import { motion } from 'framer-motion'
-import Card from './UI/Card';
-import Error from './UI/Error';
+import Card from '../UI/Card';
+import Error from '../UI/Error';
 
 type quizData = {
     title: string | undefined;
