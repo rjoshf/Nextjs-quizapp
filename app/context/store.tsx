@@ -56,16 +56,14 @@ export const QuizProvider = ({ children }: QuizProviderProps) => {
         localStorage.setItem("loadedQuizzes", JSON.stringify(loadedQuizzes))
     }, [loadedQuizzes])
 
-    useEffect(() => {
-        localStorage.setItem("quizTimer", JSON.stringify(quizTimer))
-    }, [quizTimer])
-
     const updateQuizzes = (quizzes: Quiz[]) => {
         setQuizzes(quizzes);
     };
 
     const updateQuizTimer = (time: number) => {
         setQuizTimer(time);
+        // Store the timer value in localStorage
+        localStorage.setItem("quizTimer", JSON.stringify(time))
     };
 
     return (

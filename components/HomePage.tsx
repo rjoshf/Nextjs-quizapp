@@ -33,10 +33,16 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         //load quizzes into the
         updateQuizzes(quizzes)
 
-        if (localStorage.getItem('selectedQuiz')) {
+        // Check if selectedQuiz exists in localStorage
+        const selectedQuizExists = localStorage.getItem('selectedQuiz');
+
+        // If selectedQuiz exists, set hasQuizStarted to true
+        if (selectedQuizExists) {
             setHasQuizStarted(true);
         } else {
+            // If selectedQuiz doesn't exist, set hasQuizStarted to false and update the quiz timer
             setHasQuizStarted(false);
+            updateQuizTimer(10000);
         }
     }, [])
 
@@ -51,9 +57,6 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     function startQuiz(event: React.FormEvent) {
         event.preventDefault();
         localStorage.setItem('selectedQuiz', JSON.stringify(selectedOption));
-        if (!localStorage.getItem('quizTimer')) {
-            updateQuizTimer(10000);
-        }
         router.push('/quiz/' + selectedOption);
     }
 
@@ -89,6 +92,11 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
             </motion.section>
+            <div className={styles["custom-shape-divider-bottom-1707761150"]}>
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className={styles["shape-fill"]}></path>
+                </svg>
+            </div>
         </>
     )
 
