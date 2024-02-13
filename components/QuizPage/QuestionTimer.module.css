@@ -2,15 +2,15 @@
     width: 50%;
     height: 0.5rem;
     border-radius: 24px;
-    background: #e0e0e0; /* Default background color */
+    background: #e0e0e0; 
     margin: 0;
-    transition: background-color 0.5s ease; /* Transition effect for background color */
+    transition: background-color 0.5s ease; 
 }
 
 .questiontime::-webkit-progress-bar {
-    background: #e0e0e0; /* Background color of the progress bar container */
+    background: #e0e0e0; 
 }
 
 .questiontime::-webkit-progress-value {
-    background: #9e5ef8; /* Color of the progress bar */
+    background: #a478ff; 
 }

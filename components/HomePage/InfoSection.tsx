@@ -37,7 +37,7 @@ const InfoSection: React.FC<{}> = ({ }) => {
                         <HiMiniDevicePhoneMobile className={styles.icon} />
                         <li className={styles.listItem}>
                             <h2>Responsive</h2>
-                            <p>Do your favourite quizzes on mobile too!</p>
+                            <p>Do your favourite quizzes on mobile!</p>
                         </li>
                     </motion.div>
                 </ul>

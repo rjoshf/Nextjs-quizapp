@@ -2,16 +2,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 
-// Define the MongoDB connection string
-const mongoURI = process.env.DATA_BASE_URL;
-
 // Define the API route handler
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const data = await req.json();
 
         // Connect to MongoDB
-        const client = await MongoClient.connect(mongoURI);
+        const client = await MongoClient.connect(process.env.DATA_BASE_URL);
         const db = client.db();
 
         // Access the Quizzes collection

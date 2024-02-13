@@ -1,5 +1,4 @@
 .question {
-    color: black;
     font-weight: 600;
 }
 
@@ -26,7 +25,7 @@
     cursor: pointer;
     padding: 0.5rem 1.5rem;
     border: none;
-    background-color: #34ace0;
+    background-color: #a478ff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
     font-weight: bold;
@@ -34,5 +33,5 @@
 }
 
 .homebutton:hover {
-    background-color: rgba(46, 170, 223, 0.842);
+    background-color: #8146f7;
 }

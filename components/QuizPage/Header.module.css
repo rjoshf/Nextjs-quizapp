@@ -7,8 +7,6 @@
 .header h1 {
     text-align: center;
     font-size: 2.75rem;
-    background-image: linear-gradient(43deg, #4682B4 46%, #75b6eb 100%);
-    background-clip: text;
-    color: transparent;
+    color: #FFBD61;
 }
 

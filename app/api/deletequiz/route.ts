@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from 'mongodb';
 
-const mongoURI = process.env.DATA_BASE_URL;
-
 export async function DELETE(req: NextRequest, res: NextResponse) {
     try {
         const url = new URL(req.url);
         const id = url.searchParams.get("id") as string;
 
-        const client = await MongoClient.connect(mongoURI);
+        const client = await MongoClient.connect(process.env.DATA_BASE_URL);
         const db = client.db();
 
         if (ObjectId.isValid(id)) {

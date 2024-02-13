@@ -1,8 +1,7 @@
 
 .infoSection {
     margin-top: 5rem;
-    background-color: #4682B4;
-    color: white;
+    background-color: #3A024B;
     text-align: center;
 }
 
@@ -18,10 +17,10 @@
 }
 
 .listItem {
-    border: white solid 2px;
+    border: #F5F1FF solid 2px;
     margin: 2rem;
     border-radius: 8px;
-    box-shadow: 1px 1px 8px 4px rgba(255, 255, 255, 0.2);
+    box-shadow: 1px 1px 8px 4px rgba(245, 241, 255, 0.2);
     width: 100%;
 }
 

@@ -66,18 +66,17 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     return (
         <>
             <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
-                <h1 className={styles.mainTitle}>NEXTQUIZ</h1>
+                <h1 className={styles.mainTitle}>NEXT<span className={styles.quiztext}>QUIZ</span></h1>
                 <Card className={styles.quizCard}>
-                    <h2 className={styles.cardTitle}>Welcome please press the button to start the quiz!</h2>
                     {!hasQuizStarted && <form onSubmit={startQuiz} className={styles.content}>
-                        <label className={styles.label} htmlFor='quizselection'>Select a quiz:</label>
+                        <label className={styles.label} htmlFor='quizselection'><h3 className={styles.labelTitle}>Select a quiz:</h3></label>
                         <div className={styles.selectcontainer}>
                             <select required id='quizselection' onChange={quizChangeHandler}>
                                 {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
                             </select>
                             <span className={styles.customarrow}></span>
                         </div>
-                        <label className={styles.label} htmlFor='quiztime'>Time for each question (seconds):</label>
+                        <label className={styles.label} htmlFor='quiztime'><h3 className={styles.labelTitle}>Time per question (seconds):</h3></label>
                         <div className={styles.selectcontainer}>
                             <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
                                 <option key={10}>10</option>
