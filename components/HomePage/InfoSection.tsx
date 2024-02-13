@@ -22,7 +22,7 @@ const InfoSection: React.FC<{}> = ({ }) => {
                     <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} key="create" className={styles.listItemContainer}>
                         <IoIosCreate className={styles.icon} />
                         <li className={styles.listItem}>
-                            <h2>Create</h2>
+                            <h2>Creative</h2>
                             <p>Create your own unique quizzes!</p>
                         </li>
                     </motion.div>
@@ -30,7 +30,7 @@ const InfoSection: React.FC<{}> = ({ }) => {
                         <IoSpeedometerOutline className={styles.icon}></IoSpeedometerOutline>
                         <li className={styles.listItem}>
                             <h2>Fast</h2>
-                            <p>Create and start quizzes with speed!</p>
+                            <p>Start and resume quizzes with speed!</p>
                         </li>
                     </motion.div>
                     <motion.div viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} key="responsive" className={styles.listItemContainer}>

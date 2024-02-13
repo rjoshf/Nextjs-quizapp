@@ -34,6 +34,8 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         return storedQuiz ? JSON.parse(storedQuiz) : quizzes[0].id;
     });
 
+    const [buttonText, setButtonText] = useState('Start Quiz')
+
     useEffect(() => {
         //load quizzes into the
         updateQuizzes(quizzes)
@@ -56,6 +58,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     function startQuiz(event: React.FormEvent) {
         event.preventDefault();
+        setButtonText('Loading...')
         localStorage.setItem('selectedQuiz', JSON.stringify(selectedOption));
         router.push('/quiz/' + selectedOption);
     }
@@ -86,7 +89,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                             </select>
                             <span className={styles.customarrow}></span>
                         </div>
-                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>Start Quiz</motion.button>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>{buttonText}</motion.button>
                     </form>}
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
