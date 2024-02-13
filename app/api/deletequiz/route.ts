@@ -1,22 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from 'mongodb';
 
-const mongoURI = 'mongodb+srv://joshW:football101@cluster0.cwcph8s.mongodb.net/quizzes?retryWrites=true&w=majority';
+const mongoURI = process.env.DATA_BASE_URL;
 
 export async function DELETE(req: NextRequest, res: NextResponse) {
-    const url = new URL(req.url);
-    const id = url.searchParams.get("id") as string;
+    try {
+        const url = new URL(req.url);
+        const id = url.searchParams.get("id") as string;
 
-    const client = await MongoClient.connect(mongoURI);
-    const db = client.db();
+        const client = await MongoClient.connect(mongoURI);
+        const db = client.db();
 
-    if (ObjectId.isValid(id)) {
-        const quizzesCollection = db.collection('Quizzes');
+        if (ObjectId.isValid(id)) {
+            const quizzesCollection = db.collection('Quizzes');
 
-        await quizzesCollection.deleteOne({_id: new ObjectId(id)});
+            await quizzesCollection.deleteOne({_id: new ObjectId(id)});
+            client.close();
+
+            return new Response("Deleted Quiz");
+        } else {
+            throw new Error('Invalid quiz ID');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        return new Response("An error occurred", { status: 500 });
     }
-
-    client.close();
-
-    return new Response("Deleted Quiz");
 }

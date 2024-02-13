@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 
 // Define the MongoDB connection string
-const mongoURI = 'mongodb+srv://joshW:football101@cluster0.cwcph8s.mongodb.net/quizzes?retryWrites=true&w=majority';
+const mongoURI = process.env.DATA_BASE_URL;
 
 // Define the API route handler
 export async function POST(req: NextRequest, res: NextResponse) {

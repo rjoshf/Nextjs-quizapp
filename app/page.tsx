@@ -6,9 +6,8 @@ type quizzes = { title: string; questions: { question: string; answers: { answer
 
 //fetch database data in server component to keep sensitive details hidden.
 async function getQuizzes() {
-  const databaseURL = process.env.DATA_BASE_URL
   // Connect to MongoDB
-  const client = await MongoClient.connect(databaseURL);
+  const client = await MongoClient.connect(process.env.DATA_BASE_URL);
   const db = client.db();
 
   // Access the Quizzes collection
