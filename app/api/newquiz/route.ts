@@ -2,18 +2,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+
 // Define the API route handler
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const data = await req.json();
 
-        if (!process.env.DATA_BASE_URL) {
-            throw new Error('DATA_BASE_URL is not defined');
+        if (!process.env.URI) {
+            throw new Error('URI is not defined');
         }
         
 
         // Connect to MongoDB
-        const client = await MongoClient.connect(process.env.DATA_BASE_URL);
+        const client = await MongoClient.connect(process.env.URI);
         const db = client.db();
 
         // Access the Quizzes collection

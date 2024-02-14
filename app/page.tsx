@@ -2,17 +2,20 @@ import { MongoClient } from 'mongodb'
 
 import HomePage from "@/components/HomePage/HomePage";
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
 //fetch database data in server component to keep sensitive details hidden.
 async function getQuizzes() {
 
-  if (!process.env.DATA_BASE_URL) {
-    throw new Error('DATA_BASE_URL is not defined');
+  if (!process.env.URI) {
+    throw new Error('URI is not defined');
   }
 
   // Connect to MongoDB
-  const client = await MongoClient.connect(process.env.DATA_BASE_URL);
+  const client = await MongoClient.connect(process.env.URI);
   const db = client.db();
 
   // Access the Quizzes collection
