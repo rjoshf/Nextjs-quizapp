@@ -1,8 +1,5 @@
-
 import styles from './NewQuizForm.module.css'
-
 import { useRef, useState } from 'react'
-
 import { motion } from 'framer-motion'
 import Card from '../UI/Card';
 import Error from '../UI/Error';
@@ -21,7 +18,6 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [duplicateAnswers, setDuplicateAnswers] = useState(false)
-
     const titleInputRef = useRef<HTMLInputElement>(null);
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
     const questionInputRefs: React.RefObject<HTMLInputElement>[] = Array.from(

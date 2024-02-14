@@ -51,7 +51,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         if (!selectedQuizExists) {
             updateQuizTimer(10000);
         }
-    }, [])
+    }, [quizzes, updateQuizTimer, updateQuizzes])
 
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);
