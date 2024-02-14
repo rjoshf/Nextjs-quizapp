@@ -21,40 +21,32 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     const router = useRouter();
 
-    const [hasQuizStarted, setHasQuizStarted] = useState<boolean>(() => {
-        const hasQuizBeenSelected = localStorage.getItem('selectedQuiz');
-        if (hasQuizBeenSelected) {
-            return true;
-        } else {
-            return false;
-        }
-    });
-
-    const [selectedOption, setSelectedOption] = useState(() => {
-        if (quizzes.length > 0) {
-            const storedQuiz = localStorage.getItem('selectedQuiz');
-            return storedQuiz ? JSON.parse(storedQuiz) : quizzes[0].id;
-        } else {
-            return null
-        }
-    });
-
+    const [hasQuizStarted, setHasQuizStarted] = useState<boolean>(false);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [buttonText, setButtonText] = useState('Start Quiz')
 
     useEffect(() => {
-        //load quizzes into the
-        updateQuizzes(quizzes)
+        // Load quizzes into context
+        updateQuizzes(quizzes);
 
-        // Check if selectedQuiz exists in localStorage
+        // Initialize state based on localStorage, ensuring this runs only on client side
+        const hasQuizBeenSelected = localStorage.getItem('selectedQuiz');
+        if (hasQuizBeenSelected) {
+            setHasQuizStarted(true);
+            setSelectedOption(JSON.parse(hasQuizBeenSelected));
+        } else if (quizzes.length > 0) {
+            setSelectedOption(quizzes[0].id); // default to the first quiz if none is selected
+        }
+
+        // Check if selectedQuiz exists in localStorage and update quiz timer accordingly
         const selectedQuizExists = localStorage.getItem('selectedQuiz');
-
         if (!selectedQuizExists) {
             updateQuizTimer(10000);
         }
-    }, [quizzes, updateQuizTimer, updateQuizzes])
+    }, [quizzes, updateQuizTimer, updateQuizzes]);
 
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(event.currentTarget.options[event.currentTarget.selectedIndex].getAttribute('id')!);
+        setSelectedOption(event.currentTarget.value);
     }
 
     const timeChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -76,12 +68,12 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                     {!hasQuizStarted && <form onSubmit={startQuiz} className={styles.content}>
                         {quizzes.length !== 0 && <><label className={styles.label} htmlFor='quizselection'><h3 className={styles.labelTitle}>Select a quiz:</h3></label>
                             <div className={styles.selectcontainer}>
-                                <select required id='quizselection' onChange={quizChangeHandler}>
-                                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                                <select required id='quizselection' onChange={quizChangeHandler} value={selectedOption || undefined}>
+                                    {quizzes.map(quiz => <option key={quiz.id} value={quiz.id}>{quiz.title}</option>)}
                                 </select>
                                 <span className={styles.customarrow}></span>
                             </div></>}
-                        {quizzes.length === 0 && <h2 className={styles.noquiztext}>No quizzes detected. please add a quiz</h2>}
+                        {quizzes.length === 0 && <h2 className={styles.noquiztext}>No quizzes detected. Please add a quiz.</h2>}
                         <label className={styles.label} htmlFor='quiztime'><h3 className={styles.labelTitle}>Time per question (seconds):</h3></label>
                         <div className={styles.selectcontainer}>
                             <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
@@ -94,7 +86,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                             </select>
                             <span className={styles.customarrow}></span>
                         </div>
-                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} disabled={quizzes.length === 0 ? true : false} className={styles.startLink}>{buttonText}</motion.button>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} disabled={quizzes.length === 0} className={styles.startLink}>{buttonText}</motion.button>
                     </form>}
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
@@ -102,8 +94,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             <InfoSection></InfoSection>
             <SocialSection></SocialSection>
         </>
-    )
-
+    );
 }
 
-export default HomePage
+export default HomePage;
