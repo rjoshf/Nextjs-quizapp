@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient } from 'mongodb';
+import { revalidatePath } from 'next/cache';
 
 import HomePage from "@/components/HomePage/HomePage";
 
@@ -34,6 +35,8 @@ async function getQuizzes() {
 export default async function Home() {
 
   const quizzes: quizzes = await getQuizzes();
+
+  revalidatePath("/");
 
   return (
     <>
