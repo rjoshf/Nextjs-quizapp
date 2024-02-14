@@ -6,9 +6,18 @@
 }
 
 .infoTitle {
-    padding: 3rem;
+    padding: 2rem;
     font-size: 2.75rem;
     margin: 0;
+    text-shadow: 0 0 60px #F5F1FF;
+}
+
+.knowledgetext {
+    color: #ff21C1;
+}
+
+.funtext {
+    color: #FFBD61;
 }
 
 .infoList {
@@ -27,12 +36,8 @@
 .infoContent {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.infoContent > * {
-    padding: 2rem;
-    margin: 0 8rem;
+    justify-content: space-evenly;
+    padding-bottom: 2rem;
 }
 
 .listItemContainer {

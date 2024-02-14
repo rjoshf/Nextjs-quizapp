@@ -10,7 +10,7 @@ import { useState } from "react";
 import Modal from "../UI/Modal";
 import DeleteConfirmation from "../UI/DeleteConfirmation";
 import { QuizContext } from '@/app/context/store';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[];
 
@@ -47,7 +47,7 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     }
 
     return (
-        <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+        <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
             <AnimatePresence>
                 {showModal && <Modal open={showModal ? true : false} onClose={closeModalHandler}>
                     <DeleteConfirmation onConfirm={quizDeleteHandler} onCancel={closeModalHandler}></DeleteConfirmation>

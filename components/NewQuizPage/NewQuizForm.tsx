@@ -87,7 +87,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ on
 
     return (
         <>
-            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>

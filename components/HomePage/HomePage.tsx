@@ -11,6 +11,7 @@ import Card from '../UI/Card';
 
 import { QuizContext } from '@/app/context/store';
 import InfoSection from './InfoSection';
+import SocialSection from './SocialSection';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
@@ -22,7 +23,7 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     const [hasQuizStarted, setHasQuizStarted] = useState<boolean>(() => {
         const hasQuizBeenSelected = localStorage.getItem('selectedQuiz');
-        if (hasQuizBeenSelected && typeof window !== 'undefined') {
+        if (hasQuizBeenSelected) {
             return true;
         } else {
             return false;
@@ -30,8 +31,12 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
     });
 
     const [selectedOption, setSelectedOption] = useState(() => {
-        const storedQuiz = localStorage.getItem('selectedQuiz');
-        return storedQuiz ? JSON.parse(storedQuiz) : quizzes[0].id;
+        if (quizzes.length > 0) {
+            const storedQuiz = localStorage.getItem('selectedQuiz');
+            return storedQuiz ? JSON.parse(storedQuiz) : quizzes[0].id;
+        } else {
+            return null
+        }
     });
 
     const [buttonText, setButtonText] = useState('Start Quiz')
@@ -65,17 +70,18 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
     return (
         <>
-            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.5, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
                 <h1 className={styles.mainTitle}>NEXT<span className={styles.quiztext}>QUIZ</span></h1>
                 <Card className={styles.quizCard}>
                     {!hasQuizStarted && <form onSubmit={startQuiz} className={styles.content}>
-                        <label className={styles.label} htmlFor='quizselection'><h3 className={styles.labelTitle}>Select a quiz:</h3></label>
-                        <div className={styles.selectcontainer}>
-                            <select required id='quizselection' onChange={quizChangeHandler}>
-                                {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
-                            </select>
-                            <span className={styles.customarrow}></span>
-                        </div>
+                        {quizzes.length !== 0 && <><label className={styles.label} htmlFor='quizselection'><h3 className={styles.labelTitle}>Select a quiz:</h3></label>
+                            <div className={styles.selectcontainer}>
+                                <select required id='quizselection' onChange={quizChangeHandler}>
+                                    {quizzes.map(quiz => <option key={quiz.id} id={quiz.id}>{quiz.title}</option>)}
+                                </select>
+                                <span className={styles.customarrow}></span>
+                            </div></>}
+                        {quizzes.length === 0 && <h2 className={styles.noquiztext}>No quizzes detected. please add a quiz</h2>}
                         <label className={styles.label} htmlFor='quiztime'><h3 className={styles.labelTitle}>Time per question (seconds):</h3></label>
                         <div className={styles.selectcontainer}>
                             <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
@@ -88,12 +94,13 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
                             </select>
                             <span className={styles.customarrow}></span>
                         </div>
-                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink}>{buttonText}</motion.button>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} disabled={quizzes.length === 0 ? true : false} className={styles.startLink}>{buttonText}</motion.button>
                     </form>}
                     {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
                 </Card>
             </motion.section>
             <InfoSection></InfoSection>
+            <SocialSection></SocialSection>
         </>
     )
 

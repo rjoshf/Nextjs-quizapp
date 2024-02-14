@@ -1,13 +1,13 @@
 .mainTitle {
     text-align: center;
     font-size: 2.75rem;
-    color: #FFBD61;
-    text-shadow: 0 0 40px #FFBD61;
+    color: #ff21C1;
+    text-shadow: 0 0 40px #ff21C1;
 }
 
 .quiztext {
-    color: #ff21C1;
-    text-shadow: 0 0 40px #ff21C1;
+    color: #FFBD61;
+    text-shadow: 0 0 40px #FFBD61;
 }
 
 .cardTitle{
@@ -112,4 +112,8 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.noquiztext {
+    margin-top: 0;
 }
