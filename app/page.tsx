@@ -6,6 +6,11 @@ type quizzes = { title: string; questions: { question: string; answers: { answer
 
 //fetch database data in server component to keep sensitive details hidden.
 async function getQuizzes() {
+
+  if (!process.env.DATA_BASE_URL) {
+    throw new Error('DATA_BASE_URL is not defined');
+  }
+
   // Connect to MongoDB
   const client = await MongoClient.connect(process.env.DATA_BASE_URL);
   const db = client.db();

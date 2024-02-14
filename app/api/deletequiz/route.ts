@@ -6,6 +6,10 @@ export async function DELETE(req: NextRequest, res: NextResponse) {
         const url = new URL(req.url);
         const id = url.searchParams.get("id") as string;
 
+        if (!process.env.DATA_BASE_URL) {
+            throw new Error('DATA_BASE_URL is not defined');
+        }        
+
         const client = await MongoClient.connect(process.env.DATA_BASE_URL);
         const db = client.db();
 

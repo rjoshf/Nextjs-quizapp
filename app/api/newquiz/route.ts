@@ -7,6 +7,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
     try {
         const data = await req.json();
 
+        if (!process.env.DATA_BASE_URL) {
+            throw new Error('DATA_BASE_URL is not defined');
+        }
+        
+
         // Connect to MongoDB
         const client = await MongoClient.connect(process.env.DATA_BASE_URL);
         const db = client.db();
