@@ -3,6 +3,8 @@ import styles from './NewQuizForm.module.css';
 import Card from '../UI/Card';
 import Error from '../UI/Error';
 
+import { motion } from 'framer-motion'
+
 type Answer = {
     answer: string;
 };
@@ -88,7 +90,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
 
     return (
         <>
-            <section className={styles.newquiz}>
+            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
@@ -152,7 +154,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
                         </button>
                     </form>
                 </Card>
-            </section>
+            </motion.section>
         </>
     );
 };
