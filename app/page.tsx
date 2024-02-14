@@ -8,7 +8,7 @@ type quizzes = { title: string; questions: { question: string; answers: { answer
 async function getQuizzes() {
 
   if (!process.env.MONGODB_URI) {
-    throw new Error('URI is not defined');
+    throw new Error('MONGO_URI is not defined');
   }
 
   // Connect to MongoDB

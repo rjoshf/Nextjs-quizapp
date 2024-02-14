@@ -8,7 +8,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const data = await req.json();
 
         if (!process.env.MONGODB_URI) {
-            throw new Error('URI is not defined');
+            throw new Error('MONGODB_URI is not defined');
         }
         
 

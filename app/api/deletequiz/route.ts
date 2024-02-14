@@ -7,7 +7,7 @@ export async function DELETE(req: NextRequest, res: NextResponse) {
         const id = url.searchParams.get("id") as string;
 
         if (!process.env.MONGODB_URI) {
-            throw new Error('URI is not defined');
+            throw new Error('MONGODB_URI is not defined');
         }        
 
         const client = await MongoClient.connect(process.env.MONGODB_URI);
