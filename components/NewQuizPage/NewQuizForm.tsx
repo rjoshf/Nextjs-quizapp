@@ -1,130 +1,158 @@
-import styles from './NewQuizForm.module.css'
-import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react';
+import styles from './NewQuizForm.module.css';
 import Card from '../UI/Card';
 import Error from '../UI/Error';
 
-type quizData = {
-    title: string | undefined;
-    questions: {
-        question: string | undefined;
-        answers: {
-            answer: string | undefined;
-        }[];
-    }[];
-}
+type Answer = {
+    answer: string;
+};
 
-const NewQuizForm: React.FC<{ onAddQuiz: (quizData: quizData) => void }> = ({ onAddQuiz }) => {
+type Question = {
+    question: string;
+    answers: Answer[];
+};
 
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [duplicateAnswers, setDuplicateAnswers] = useState(false)
-    const titleInputRef = useRef<HTMLInputElement>(null);
+type QuizData = {
+    title: string;
+    questions: Question[];
+};
+
+const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ onAddQuiz }) => {
+    const [quizTitle, setQuizTitle] = useState('');
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
-    const questionInputRefs: React.RefObject<HTMLInputElement>[] = Array.from(
-        { length: 10 },
-        () => useRef<HTMLInputElement>(null)
-    );
-    const answerInputRefs: React.RefObject<HTMLInputElement>[][] = Array.from(
-        { length: 10 },
-        () => Array.from({ length: 4 }, () => useRef<HTMLInputElement>(null))
-    );
+    const [questions, setQuestions] = useState<Question[]>([
+        { question: '', answers: Array(4).fill({ answer: '' }) },
+    ]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [duplicateAnswers, setDuplicateAnswers] = useState(false);
 
     const questionChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setNumberOfQuestions(+event.target.value);
+        const newNumberOfQuestions = +event.target.value;
+        setNumberOfQuestions(newNumberOfQuestions);
+
+        const newQuestions = Array.from({ length: newNumberOfQuestions }, (_, index) => {
+            return questions[index] || { question: '', answers: Array(4).fill({ answer: '' }) };
+        });
+
+        setQuestions(newQuestions);
+    };
+
+    const onQuestionUpdate = (index: number, questionText: string) => {
+        const updatedQuestions = questions.map((q, qIndex) =>
+            qIndex === index ? { ...q, question: questionText } : q
+        );
+        setQuestions(updatedQuestions);
+    };
+
+    const onAnswerUpdate = (questionIndex: number, answerIndex: number, answerText: string) => {
+        const updatedQuestions = questions.map((q, qIndex) => {
+            if (qIndex === questionIndex) {
+                return {
+                    ...q,
+                    answers: q.answers.map((a, aIndex) =>
+                        aIndex === answerIndex ? { ...a, answer: answerText } : a
+                    ),
+                };
+            }
+            return q;
+        });
+
+        setQuestions(updatedQuestions);
     };
 
     const newQuizHandler = (event: React.FormEvent) => {
-        setDuplicateAnswers(false);
         event.preventDefault();
-        const quizTitle = titleInputRef.current?.value;
-        let quizQuestions = [];
-        for (let i = 0; i < numberOfQuestions; i++) {
-            const question = questionInputRefs[i].current?.value;
-            const answers = [];
+        setDuplicateAnswers(false);
 
-            for (let j = 0; j < 4; j++) {
-                const answer = answerInputRefs[i][j].current?.value;
-                answers.push({ answer });
-            }
-
-            quizQuestions.push({
-                question,
-                answers,
-            });
-        }
-
-        const quizAnswers = quizQuestions.map(question =>
-            question.answers.map(answer => answer.answer!.trim())
-        );
-
-        let hasDuplicates = quizAnswers.some(answers =>
-            answers.some((answer, j) => answers.indexOf(answer) !== j)
+        const hasDuplicates = questions.some(question =>
+            question.answers.some((answer, index, self) =>
+                self.findIndex(a => a.answer === answer.answer) !== index
+            )
         );
 
         if (hasDuplicates) {
-            console.log("There are duplicate answers in the quiz!");
-            hasDuplicates = false;
-            setDuplicateAnswers(true)
+            setDuplicateAnswers(true);
             return;
         }
 
-        const quizData = {
+        const quizData: QuizData = {
             title: quizTitle,
-            questions: quizQuestions,
-        }
+            questions,
+        };
 
-        if (isSubmitting === true) {
-            return;
+        if (!isSubmitting) {
+            setIsSubmitting(true);
+            onAddQuiz(quizData);
         }
-
-        setIsSubmitting(true)
-        onAddQuiz(quizData)
     };
 
     return (
         <>
-            <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }} className={styles.newquiz}>
+            <section className={styles.newquiz}>
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
                         <div className={styles.quizDetailsCard}>
                             <div>
-                                <label className={styles.label} htmlFor="title">Quiz Title: </label>
-                                <input required className={styles.input} type="text" id="title" ref={titleInputRef} />
+                                <label className={styles.label} htmlFor="title">Quiz Title:</label>
+                                <input
+                                    required
+                                    className={styles.input}
+                                    type="text"
+                                    id="title"
+                                    value={quizTitle}
+                                    onChange={(e) => setQuizTitle(e.target.value)}
+                                />
                             </div>
                             <div>
-                                <label className={styles.label} htmlFor="numberofquestions">Enter the number of questions:</label>
-                                <select className={styles.input} id="numberofquestions" onChange={questionChangeHandler}>
+                                <label className={styles.label} htmlFor="numberofquestions">Number of Questions:</label>
+                                <select
+                                    className={styles.input}
+                                    id="numberofquestions"
+                                    value={numberOfQuestions}
+                                    onChange={questionChangeHandler}
+                                >
                                     {Array.from({ length: 10 }, (_, index) => (
-                                        <option key={index + 1} value={index + 1}>
-                                            {index + 1}
-                                        </option>
+                                        <option key={index + 1} value={index + 1}>{index + 1}</option>
                                     ))}
                                 </select>
                             </div>
                         </div>
-                        {[...Array(numberOfQuestions)].map((_, questionIndex) => (
+                        {questions.map((question, questionIndex) => (
                             <div key={questionIndex} className={styles.questionCard}>
-                                <div>
-                                    <label className={styles.label} htmlFor={`question${questionIndex + 1}`}>Question {questionIndex + 1}</label>
-                                    <input required className={styles.input} ref={questionInputRefs[questionIndex]} type="text" id={`question${questionIndex + 1}`} />
-
-                                    {[...Array(4)].map((_, answerIndex) => (
-                                        <div key={answerIndex}>
-                                            <label className={styles.label} htmlFor={`answer${questionIndex + 1}-${answerIndex + 1}`}>
-                                                {answerIndex === 0 ? 'Correct Answer' : `Incorrect Answer:  ${answerIndex}`}
-                                            </label>
-                                            <input required className={styles.input} ref={answerInputRefs[questionIndex][answerIndex]} type="text" id={`answer${questionIndex + 1}-${answerIndex + 1}`} />
-                                        </div>
-                                    ))}
-                                </div>
+                                <label className={styles.label} htmlFor={`question-${questionIndex}`}>Question {questionIndex + 1}</label>
+                                <input
+                                    required
+                                    className={styles.input}
+                                    type="text"
+                                    id={`question-${questionIndex}`}
+                                    value={question.question}
+                                    onChange={(e) => onQuestionUpdate(questionIndex, e.target.value)}
+                                />
+                                {question.answers.map((answer, answerIndex) => (
+                                    <div key={answerIndex}>
+                                        <label className={styles.label} htmlFor={`answer-${questionIndex}-${answerIndex}`}>
+                                            Answer {answerIndex + 1}
+                                        </label>
+                                        <input
+                                            required
+                                            className={styles.input}
+                                            type="text"
+                                            id={`answer-${questionIndex}-${answerIndex}`}
+                                            value={answer.answer}
+                                            onChange={(e) => onAnswerUpdate(questionIndex, answerIndex, e.target.value)}
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         ))}
-                        {duplicateAnswers && <Error errorTitle="Error: duplicate answers!" errorMessage="All answers must be unique!"></Error>}
-                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.submitButton} type="submit">{isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}</motion.button>
+                        {duplicateAnswers && <Error errorTitle="Error: Duplicate Answers!" errorMessage="All answers must be unique." />}
+                        <button type="submit" className={styles.submitButton}>
+                            {isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}
+                        </button>
                     </form>
                 </Card>
-            </motion.section>
+            </section>
         </>
     );
 };
