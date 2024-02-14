@@ -17,7 +17,7 @@ type quizzes = { title: string; questions: { question: string; answers: { answer
 
 const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
-    const { updateQuizzes, updateQuizTimer } = useContext(QuizContext);
+    const { updateQuizzes, updateQuizTimer, quizTimer } = useContext(QuizContext);
 
     const router = useRouter();
 
@@ -43,14 +43,14 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         if (!selectedQuizExists) {
             updateQuizTimer(10000);
         }
-    }, [quizzes, updateQuizTimer, updateQuizzes]);
+    }, [quizzes]);
 
     const quizChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.currentTarget.value);
     }
 
     const timeChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        updateQuizTimer(+event.target.value * 1000)
+        updateQuizTimer(+event.target.value * 1000);
     }
 
     function startQuiz(event: React.FormEvent) {
