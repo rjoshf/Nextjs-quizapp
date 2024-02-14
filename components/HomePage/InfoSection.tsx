@@ -15,7 +15,7 @@ const InfoSection: React.FC<{}> = ({ }) => {
         <section className={styles.infoSection}>
             <h1 className={styles.infoTitle}>Where <span className={styles.knowledgetext}>knowledge</span> meets <span className={styles.funtext}>fun</span>.</h1>
             <div className={styles.infoContent}>
-                <motion.div viewport={{ once: true, amount: 0.3 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+                <motion.div className={styles.image} viewport={{ once: true, amount: 0.3 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
                     <Image width={500} height={500} src={quizSVG} alt={"/"}></Image>
                 </motion.div>
                 <ul className={styles.infoList}>

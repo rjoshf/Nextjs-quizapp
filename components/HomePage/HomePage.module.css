@@ -17,7 +17,7 @@
 
 .startLink {
     font: inherit;
-    width: 40%;
+    width: 50%;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem 1.5rem;
@@ -57,7 +57,7 @@
 
 .selectcontainer {
     margin-bottom: 2rem;
-    width: 40%;
+    width: 50%;
     position: relative;
     text-align: center;
 }
@@ -116,4 +116,25 @@
 
 .noquiztext {
     margin-top: 0;
+}
+
+@media (max-width: 1000px) {
+    .selectcontainer {
+        width: 60%;
+    }
+    .startLink {
+        width: 60%;
+    }
+}
+
+@media (max-width: 700px) {
+    .labelTitle {
+        font-size: 1.25rem;
+    }
+    .selectcontainer {
+        width: 100%;
+    }
+    .startLink {
+        width: 100%;
+    }
 }

@@ -35,3 +35,22 @@
 .homebutton:hover {
     background-color: #8146f7;
 }
+
+@media (max-width: 700px) {
+    .question h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .homebutton {
+        width: 80%;
+    }
+    .resultstitle {
+        font-size: 1.3rem;
+    }
+    .results{
+        font-size: 1.3rem;
+    }
+    .resultspercentage{
+        font-size: 1.3rem;
+    }
+}

@@ -14,3 +14,10 @@
 .questiontime::-webkit-progress-value {
     background: #a478ff; 
 }
+
+
+@media (max-width: 700px) {
+    .questiontime {
+        width: 100%;
+    }
+}

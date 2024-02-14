@@ -39,7 +39,7 @@ const SocialSection: React.FC<{}> = ({ }) => {
                 <motion.ul ref={inViewRef} initial="hidden" animate={isInView ? "visible" : "hidden"} transition={{ staggerChildren: 0.4 }} className={styles.socialIconList}>
                     {socialMediaArray.map((Icon, index) => <motion.li variants={defaultAnimations} key={index}><Icon className={styles.icon}></Icon></motion.li>)}
                 </motion.ul>
-                <motion.div viewport={{ once: true, amount: 0.3 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
+                <motion.div className={styles.image} viewport={{ once: true, amount: 0.3 }} initial={{ opacity: 0, y: 15, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
                     <Image width={500} height={500} src={socialmediaSVG} alt={''}></Image>
                 </motion.div>
             </div>

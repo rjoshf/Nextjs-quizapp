@@ -69,3 +69,15 @@
 .submitButton:hover {
     background-color: #8146f7;
 }
+
+@media (max-width: 700px) {
+  .quizDetailsCard {
+    width: 100%;
+  }
+  .questionCard {
+    width: 100%;
+  }
+  .submitButton {
+    width: 100%;
+  }
+}

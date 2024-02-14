@@ -51,3 +51,9 @@
     color: black;
     border: inherit;
 }
+
+@media (max-width: 700px) {
+    .answer button {
+        font-size: 1rem;
+    }
+}

@@ -7,3 +7,21 @@
     box-shadow: 1px 1px 8px 4px rgba(245, 241, 255, 0.4);
     text-align: center;
 }
+
+@media (max-width: 1000px) {
+    .card {
+        max-width: 40rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        max-width: 30rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        max-width: 22rem;
+    }
+}

@@ -51,3 +51,40 @@
     width: 5rem;
     height: 5rem;
 }
+
+@media (max-width: 1200px) {
+    .listItemContainer {
+        width: 30rem;
+        margin-left: 2rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .image {
+        display: none;
+    }
+    .listItemContainer {
+        width: 35rem;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .listItemContainer {
+        width: 20rem;
+        margin-left: 0;
+    }
+    .listItem {
+        padding: 0.5rem;
+    }
+    .listItem > h2 {
+        font-size: 1rem;
+    }
+    .listItem > p {
+        font-size: 0.7rem;
+    }
+    .infoTitle {
+        font-size: 2rem;
+        padding-bottom: 0;
+    }
+}

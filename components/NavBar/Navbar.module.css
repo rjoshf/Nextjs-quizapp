@@ -43,3 +43,13 @@
   width: 100%;
   background-color: #FFFFFF; 
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 1.5rem 1rem;
+    justify-content: space-around;
+  }
+  .navlink {
+    font-size: 1rem;
+  }
+}
