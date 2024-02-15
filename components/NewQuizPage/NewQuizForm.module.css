@@ -43,6 +43,7 @@
 }
 
 .input {
+  -webkit-appearance: none;
   width: 100%;
   max-width: 20rem;
   border-radius: 5px; 
