@@ -26,9 +26,7 @@ export default function QuizPage({ params }: { params: { id: string } }) {
     return (
         <>
             <Header quizName={selectedQuiz.title}></Header>
-            <main>
-                <Quiz quizzQuestions={selectedQuiz.questions}></Quiz>
-            </main>
+            <Quiz quizzQuestions={selectedQuiz.questions}></Quiz>
         </>
     );
 }

@@ -4,6 +4,8 @@
 import Question from './Question'
 import Card from '../UI/Card';
 
+import styles from './Quiz.module.css'
+
 type quizzQuestions = {
     question: string;
     answers: {
@@ -14,10 +16,12 @@ type quizzQuestions = {
 const Quiz: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions }) => {
 
     return (
-        <Card>
-            <Question quizzQuestions={quizzQuestions}></Question>
-        </Card>
+        <main className={styles.quizSection}>
+            <Card>
+                <Question quizzQuestions={quizzQuestions}></Question>
+            </Card>
+        </main>
     )
 }
 
-export default Quiz
+export default Quiz;

@@ -8,7 +8,6 @@ const Answers: React.FC<{ answers: string[]; userAnswers: string[]; answerState:
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>();
 
-    //useEffect is required to stop a hydration error due to the shuffling feature.
     useEffect(() => {
         setShuffledAnswers([...answers].sort(() => Math.random() - 0.5))
     }, [])
