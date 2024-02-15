@@ -28,3 +28,9 @@
 .resetButton:hover {
     background-color: #8146f7;
 }
+
+@media (max-width: 1000px) {
+    .resetButton {
+        width: 80%;
+    }
+}

@@ -27,6 +27,7 @@
     cursor: pointer;
     padding: 0.5rem 1.5rem;
     border: none;
+    color: black;
     background-color: #a478ff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
@@ -39,6 +40,7 @@
     cursor: pointer;
     padding: 0.5rem 1.5rem;
     border: none;
+    color: black;
     background-color: #fa4444;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
