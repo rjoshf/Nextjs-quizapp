@@ -134,7 +134,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
                                 {question.answers.map((answer, answerIndex) => (
                                     <div key={answerIndex}>
                                         <label className={styles.label} htmlFor={`answer-${questionIndex}-${answerIndex}`}>
-                                            Answer {answerIndex + 1}
+                                            {answerIndex === 0 ? "Correct Answer" : `Incorrect answer ${answerIndex}`}
                                         </label>
                                         <input
                                             required

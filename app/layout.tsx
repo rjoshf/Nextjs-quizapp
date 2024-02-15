@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/NavBar/Navbar";
 import { QuizProvider } from "./context/store";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QuizProvider>
-          <Navbar></Navbar>
+          <Navbar />
+          <NextTopLoader color="#ff21C1" />
           {children}
         </QuizProvider>
       </body>
