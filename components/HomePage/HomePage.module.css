@@ -49,6 +49,11 @@
     background-color: #a478ff;
     color: black;
     border: 0;
+    -webkit-appearance: none;
+}
+
+.selectcontainer > option {
+    -webkit-appearance: none;
 }
 
 .selectcontainer > select:focus {
