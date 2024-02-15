@@ -1,0 +1,30 @@
+.header {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+
+.header h1 {
+    text-align: center;
+    font-size: 2.75rem;
+    color: #FFBD61;
+}
+
+.resetButton {
+    color: black;
+    font: inherit;
+    width: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #a478ff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.resetButton:hover {
+    background-color: #8146f7;
+}

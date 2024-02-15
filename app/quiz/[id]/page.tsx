@@ -2,6 +2,7 @@
 
 import Header from "@/components/QuizPage/Header";
 import Quiz from "@/components/QuizPage/Quiz";
+import QuizNotFound from "@/components/QuizPage/QuizNotFound";
 import { useRouter } from "next/navigation";
 
 export default function QuizPage({ params }: { params: { id: string } }) {
@@ -17,18 +18,8 @@ export default function QuizPage({ params }: { params: { id: string } }) {
     const selectedQuiz = loadedQuizzes.find((quiz: { id: string }) => quiz.id === params.id);
 
     if (!selectedQuiz) {
-        // Handle the case where selectedQuiz is undefined
-        const resetHandler = () => {
-            localStorage.clear();
-            router.push("/");
-            router.refresh();
-        }
-
         return (
-            <>
-                <p>Quiz not found!</p>
-                <button onClick={resetHandler}>Reset quizzes</button>
-            </>
+            <QuizNotFound></QuizNotFound>
         );
     }
 
