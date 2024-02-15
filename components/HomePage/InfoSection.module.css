@@ -6,6 +6,7 @@
 }
 
 .infoTitle {
+    color: #F5F1FF;
     padding: 2rem;
     font-size: 2.75rem;
     margin: 0;
@@ -27,6 +28,7 @@
 
 .listItem {
     border: #F5F1FF solid 2px;
+    color: #F5F1FF;
     margin: 2rem;
     border-radius: 8px;
     box-shadow: 1px 1px 8px 4px rgba(245, 241, 255, 0.2);
@@ -48,6 +50,7 @@
 }
 
 .icon {
+    color: #F5F1FF;
     width: 5rem;
     height: 5rem;
 }

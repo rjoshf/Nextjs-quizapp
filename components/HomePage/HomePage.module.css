@@ -16,6 +16,7 @@
 }
 
 .startLink {
+    color: black;
     font: inherit;
     width: 50%;
     font-size: 1.5rem;
@@ -109,6 +110,7 @@
 }
 
 .label {
+    color: #F5F1FF;
     display: block;
     margin-bottom: 2rem;
 }

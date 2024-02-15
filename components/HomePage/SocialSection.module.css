@@ -4,6 +4,7 @@
 }
 
 .title {
+    color: #F5F1FF;
     text-shadow: 0 0 60px #F5F1FF;
     padding-top: 3rem;
     padding-bottom: 1rem;
@@ -24,6 +25,7 @@
 }
 
 .icon {
+    color: #F5F1FF;
     width: 5rem;
     height: 5rem;
     margin: 2rem;

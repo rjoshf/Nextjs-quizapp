@@ -43,7 +43,6 @@
 }
 
 .input {
-  -webkit-appearance: none;
   width: 100%;
   max-width: 20rem;
   border-radius: 5px; 
@@ -54,6 +53,7 @@
 }
   
 .submitButton {
+  color: black;
   font: inherit;
   width: 40%;
   font-size: 1.5rem;

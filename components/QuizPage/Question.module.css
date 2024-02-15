@@ -3,6 +3,7 @@
 }
 
 .question h2 {
+    color: #F5F1FF;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
@@ -12,10 +13,16 @@
 
 .resultstitle {
     margin-top: 0;
+    color: #F5F1FF;
+}
+
+.results {
+    color: #F5F1FF;
 }
 
 .resultspercentage {
     margin-bottom: 2.5rem;
+    color: #F5F1FF;
 }
 
 .homebutton {
@@ -25,6 +32,7 @@
     cursor: pointer;
     padding: 0.5rem 1.5rem;
     border: none;
+    color: black;
     background-color: #a478ff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
