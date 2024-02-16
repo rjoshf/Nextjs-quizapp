@@ -26,6 +26,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-weight: bold;
+    overflow-wrap: break-word;
 }
 
 .answer button:hover {
