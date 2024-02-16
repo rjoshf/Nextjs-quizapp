@@ -12,16 +12,14 @@ import DeleteConfirmation from "../UI/DeleteConfirmation";
 import { QuizContext } from '@/app/context/store';
 import { useContext } from 'react';
 
-type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[];
-
-const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
-
-    const { updateQuizzes } = useContext(QuizContext);
+const DeleteQuiz: React.FC<{}> = () => {
 
     const router = useRouter()
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
+
+    const { updateQuizzes, loadedQuizzes } = useContext(QuizContext);
 
     const showModalHandler = (id: string) => {
         setShowModal(true);
@@ -39,7 +37,7 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             method: 'DELETE',
         });
         //update context
-        updateQuizzes(quizzes.filter(quiz => quiz.id !== selectedId));
+        updateQuizzes(loadedQuizzes.filter(quiz => quiz.id !== selectedId));
         router.refresh();
         //clean up
         setIsDeleting(false);
@@ -57,7 +55,7 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
             <div className={styles.deletequizcontainer}>
                 <Card>
                     <ul className={styles.deleteQuizList}>
-                        {quizzes.map(quiz => <li className={styles.deleteQuizItem} key={quiz.id}><div>{quiz.title}</div><motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.deleteButton} onClick={() => showModalHandler(quiz.id)}>{isDeleting && selectedId === quiz.id ? "Deleting Quiz..." : "Delete Quiz"}</motion.button></li>)}
+                        {loadedQuizzes.map(quiz => <li className={styles.deleteQuizItem} key={quiz.id}><div>{quiz.title}</div><motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.deleteButton} onClick={() => showModalHandler(quiz.id)}>{isDeleting && selectedId === quiz.id ? "Deleting Quiz..." : "Delete Quiz"}</motion.button></li>)}
                     </ul>
                 </Card>
             </div>
@@ -66,4 +64,4 @@ const DeleteQuiz: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
 
 }
 
-export default DeleteQuiz
+export default DeleteQuiz;
