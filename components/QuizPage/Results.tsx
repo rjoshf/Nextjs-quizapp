@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import { useState } from 'react';
+
 import { useRouter } from "next/navigation";
 
 import styles from './Results.module.css';
@@ -14,7 +16,10 @@ type quizzQuestions = {
 const Results: React.FC<{ quizzQuestions: quizzQuestions; userScore: number; userAnswers: string[] }> = ({ quizzQuestions, userScore, userAnswers }) => {
     const router = useRouter();
 
+    const [endQuizText, setEndQuizText] = useState("End Quiz")
+
     const endQuiz = () => {
+        setEndQuizText("Ending...")
         localStorage.clear();
         router.push("/");
         router.refresh();
@@ -28,7 +33,7 @@ const Results: React.FC<{ quizzQuestions: quizzQuestions; userScore: number; use
                     <h2 className={styles.resultstitle}>Quiz Completed!</h2>
                     <h2 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h2>
                     <h2 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h2>
-                    <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.homebutton} onClick={endQuiz}>End Quiz</motion.button>
+                    <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.homebutton} onClick={endQuiz}>{endQuizText}</motion.button>
                 </motion.div>
             </div>
             <div className={styles.summarySection}>

@@ -4,6 +4,7 @@ import Card from '../UI/Card';
 import Error from '../UI/Error';
 
 import { motion } from 'framer-motion'
+import QuizDetailsInput from './QuizDetailsInput';
 
 type Answer = {
     answer: string;
@@ -27,6 +28,8 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
     ]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [duplicateAnswers, setDuplicateAnswers] = useState(false);
+
+    const updateQuizTitle = (title: string) => setQuizTitle(title)
 
     const questionChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newNumberOfQuestions = +event.target.value;
@@ -94,32 +97,7 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
-                        <div className={styles.quizDetailsCard}>
-                            <div>
-                                <label className={styles.label} htmlFor="title">Quiz Title:</label>
-                                <input
-                                    required
-                                    className={styles.input}
-                                    type="text"
-                                    id="title"
-                                    value={quizTitle}
-                                    onChange={(e) => setQuizTitle(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label className={styles.label} htmlFor="numberofquestions">Number of Questions:</label>
-                                <select
-                                    className={styles.input}
-                                    id="numberofquestions"
-                                    value={numberOfQuestions}
-                                    onChange={questionChangeHandler}
-                                >
-                                    {Array.from({ length: 10 }, (_, index) => (
-                                        <option key={index + 1} value={index + 1}>{index + 1}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
+                        <QuizDetailsInput quizTitle={quizTitle} updateQuizTitle={updateQuizTitle} numberOfQuestions={numberOfQuestions} questionChangeHandler={questionChangeHandler}></QuizDetailsInput>
                         {questions.map((question, questionIndex) => (
                             <div key={questionIndex} className={styles.questionCard}>
                                 <label className={styles.label} htmlFor={`question-${questionIndex}`}>Question {questionIndex + 1}</label>
