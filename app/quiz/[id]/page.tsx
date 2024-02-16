@@ -3,10 +3,8 @@
 import Header from "@/components/QuizPage/Header";
 import Quiz from "@/components/QuizPage/Quiz";
 import QuizNotFound from "@/components/QuizPage/QuizNotFound";
-import { useRouter } from "next/navigation";
 
 export default function QuizPage({ params }: { params: { id: string } }) {
-    const router = useRouter();
 
     //we reach out to local storage here so the data stays on page reload, otherwise whilst reloading the page shows quiz not found as selectedQuiz is undefined.
     const loadedQuizzesString = localStorage.getItem("loadedQuizzes");
