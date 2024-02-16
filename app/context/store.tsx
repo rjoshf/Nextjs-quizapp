@@ -30,7 +30,6 @@ const getInitialQuizState = () => {
 const getInitialTimerState = () => {
     if (typeof window !== 'undefined') {
         const quizTimer = localStorage.getItem("quizTimer");
-        console.log("quizTimer from localStorage:", quizTimer);
         try {
             return quizTimer ? JSON.parse(quizTimer) : undefined;
         } catch (error) {

@@ -72,7 +72,7 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
     }
 
     const handleSkipAnswer = useCallback(() => {
-        setUserAnswers(prevState => [...prevState, "question skipped"])
+        setUserAnswers(prevState => [...prevState, "You ran out of time on this question!"])
         localStorage.setItem('remainingTime', String(quizTimer));
     }, []);
 

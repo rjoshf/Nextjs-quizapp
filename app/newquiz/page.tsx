@@ -33,8 +33,6 @@ export default function NewQuizPage() {
     }
 
     return (
-
         <NewQuizForm onAddQuiz={addQuizHandler}></NewQuizForm>
-
     )
 }

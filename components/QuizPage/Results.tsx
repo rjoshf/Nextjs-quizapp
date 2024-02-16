@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 import { useRouter } from "next/navigation";
 
-import styles from './Results.module.css'
+import styles from './Results.module.css';
 
 type quizzQuestions = {
     question: string;
@@ -25,23 +25,26 @@ const Results: React.FC<{ quizzQuestions: quizzQuestions; userScore: number; use
             <div>
                 <motion.div initial={{ opacity: 0.5 }}
                     animate={{ opacity: 1 }} transition={{ duration: 0.4, type: 'tween' }} className={styles.question}>
-                    <h1 className={styles.resultstitle}>Quiz Completed!</h1>
-                    <h1 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h1>
-                    <h1 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h1>
+                    <h2 className={styles.resultstitle}>Quiz Completed!</h2>
+                    <h2 className={styles.results}>{`Mark: ${userScore} out of ${quizzQuestions.length}`}</h2>
+                    <h2 className={styles.resultspercentage}>{`Percentage: ${Math.round(userScore / quizzQuestions.length * 100)}%`}</h2>
                     <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.homebutton} onClick={endQuiz}>End Quiz</motion.button>
                 </motion.div>
             </div>
-            <div>
-                <ul>
+            <div className={styles.summarySection}>
+                <h2>Summary</h2>
+                <ul className={styles.questionList}>
                     {quizzQuestions.map((question, index) =>
                         <li key={question.question}>
-                            <div>{question.question}</div>
-                            <div>Your Answer: {userAnswers[index]}</div>
-                            {userAnswers[index] !== question.answers[0].answer &&
-                                <div>
-                                    Correct Answer: {question.answers[0].answer}
-                                </div>
-                            }
+                            <div className={styles.resultQuestionCard}>
+                                <div className={styles.questionItem}>{`Question ${index + 1}: `}{question.question}</div>
+                                <div className={`${styles.answerItem} ${userAnswers[index] === question.answers[0].answer ? styles.correct : styles.incorrect}`}>Your Answer: {userAnswers[index]}</div>
+                                {userAnswers[index] !== question.answers[0].answer &&
+                                    <div className={styles.correctAnswer}>
+                                        Correct Answer: {question.answers[0].answer}
+                                    </div>
+                                }
+                            </div>
                         </li>)}
                 </ul>
             </div>
