@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 
 import Image from 'next/image';
 import socialmediaSVG from '../../public/socialmediaSVG.svg';
-import { FaDAndD, FaFacebook } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";

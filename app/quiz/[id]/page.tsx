@@ -1,4 +1,3 @@
-import Header from "@/components/QuizPage/Header";
 import Quiz from "@/components/QuizPage/Quiz";
 
 export const metadata = {
