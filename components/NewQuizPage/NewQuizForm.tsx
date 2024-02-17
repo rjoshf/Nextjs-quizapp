@@ -5,6 +5,7 @@ import Error from '../UI/Error';
 
 import { motion } from 'framer-motion'
 import QuizDetailsInput from './QuizDetailsInput';
+import QuestionDetailsInput from './QuestionDetailsInput';
 
 type Answer = {
     answer: string;
@@ -97,35 +98,8 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
                 <h1 className={styles.newquiztitle}>Add a new quiz</h1>
                 <Card>
                     <form onSubmit={newQuizHandler}>
-                        <QuizDetailsInput quizTitle={quizTitle} updateQuizTitle={updateQuizTitle} numberOfQuestions={numberOfQuestions} questionChangeHandler={questionChangeHandler}></QuizDetailsInput>
-                        {questions.map((question, questionIndex) => (
-                            <div key={questionIndex} className={styles.questionCard}>
-                                <label className={styles.label} htmlFor={`question-${questionIndex}`}>Question {questionIndex + 1}</label>
-                                <input
-                                    required
-                                    className={styles.input}
-                                    type="text"
-                                    id={`question-${questionIndex}`}
-                                    value={question.question}
-                                    onChange={(e) => onQuestionUpdate(questionIndex, e.target.value)}
-                                />
-                                {question.answers.map((answer, answerIndex) => (
-                                    <div key={answerIndex}>
-                                        <label className={styles.label} htmlFor={`answer-${questionIndex}-${answerIndex}`}>
-                                            {answerIndex === 0 ? "Correct Answer" : `Incorrect answer ${answerIndex}`}
-                                        </label>
-                                        <input
-                                            required
-                                            className={styles.input}
-                                            type="text"
-                                            id={`answer-${questionIndex}-${answerIndex}`}
-                                            value={answer.answer}
-                                            onChange={(e) => onAnswerUpdate(questionIndex, answerIndex, e.target.value)}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+                        <QuizDetailsInput quizTitle={quizTitle} updateQuizTitle={updateQuizTitle} numberOfQuestions={numberOfQuestions} questionChangeHandler={questionChangeHandler} />
+                        <QuestionDetailsInput questions={questions} onQuestionUpdate={onQuestionUpdate} onAnswerUpdate={onAnswerUpdate} />
                         {duplicateAnswers && <Error errorTitle="Error: Duplicate Answers!" errorMessage="All answers must be unique." />}
                         <button type="submit" className={styles.submitButton}>
                             {isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}

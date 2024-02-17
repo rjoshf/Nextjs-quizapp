@@ -1,0 +1,32 @@
+
+.questionCard {
+    max-width: 50rem;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 1px 1px 8px 4px rgba(12, 5, 32, 0.6);
+    text-align: center;
+    background-color: #a478ff;
+    width: 80%;
+    margin-bottom: 2rem;
+}
+  
+
+.label {
+    color: black; 
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    margin-bottom: .5rem; 
+    font-size: 0.9rem; 
+}
+
+.input {
+    width: 100%;
+    max-width: 20rem;
+    border-radius: 5px; 
+    border: 1px solid #D3D3D3; 
+    margin: 10px 0; 
+    padding: 0.6rem; 
+    box-sizing: border-box; 
+}
