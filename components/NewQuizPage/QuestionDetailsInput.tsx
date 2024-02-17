@@ -1,4 +1,3 @@
-
 import styles from './QuestionDetailsInput.module.css';
 
 type Answer = {

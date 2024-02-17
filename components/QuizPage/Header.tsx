@@ -1,11 +1,10 @@
-'use client'
-
 import styles from './Header.module.css'
 
-const Header: React.FC<{ quizName: string }> = ({ quizName }) => {
+const Header: React.FC<{ title: string }> = ({ title }) => {
+
     return (
         <header className={styles.header}>
-            <h1>{quizName}</h1>
+            <h1>{title}</h1>
         </header>
     )
 }

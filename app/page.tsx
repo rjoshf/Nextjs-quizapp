@@ -12,11 +12,9 @@ async function getQuizzes() {
     throw new Error('MONGO_URI is not defined');
   }
 
-  // Connect to MongoDB
   const client = await MongoClient.connect(process.env.MONGODB_URI);
   const db = client.db();
 
-  // Access the Quizzes collection
   const quizzesCollection = db.collection('Quizzes');
 
   const quizzes = await quizzesCollection.find().toArray();
