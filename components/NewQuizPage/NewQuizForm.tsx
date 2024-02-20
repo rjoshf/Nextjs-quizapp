@@ -101,9 +101,9 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
                         <QuizDetailsInput quizTitle={quizTitle} updateQuizTitle={updateQuizTitle} numberOfQuestions={numberOfQuestions} questionChangeHandler={questionChangeHandler} />
                         <QuestionDetailsInput questions={questions} onQuestionUpdate={onQuestionUpdate} onAnswerUpdate={onAnswerUpdate} />
                         {duplicateAnswers && <Error errorTitle="Error: Duplicate Answers!" errorMessage="All answers must be unique." />}
-                        <button type="submit" className={styles.submitButton}>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} type="submit" className={styles.submitButton}>
                             {isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}
-                        </button>
+                        </motion.button>
                     </form>
                 </Card>
             </motion.section>
