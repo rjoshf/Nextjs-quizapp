@@ -54,9 +54,10 @@ const DeleteQuiz: React.FC<{}> = () => {
             <h1 className={styles.title}>Delete a quiz</h1>
             <div className={styles.deletequizcontainer}>
                 <Card>
-                    <ul className={styles.deleteQuizList}>
+                    {loadedQuizzes.length === 0 && <p className={styles.noquizzes}>No quizzes found.</p>}
+                    {loadedQuizzes.length > 0 && <ul className={styles.deleteQuizList}>
                         {loadedQuizzes.map(quiz => <li className={styles.deleteQuizItem} key={quiz.id}><div>{quiz.title}</div><motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.deleteButton} onClick={() => showModalHandler(quiz.id)}>{isDeleting && selectedId === quiz.id ? "Deleting Quiz..." : "Delete Quiz"}</motion.button></li>)}
-                    </ul>
+                    </ul>}
                 </Card>
             </div>
         </motion.section>

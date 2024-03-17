@@ -50,6 +50,11 @@
     background-color: red;
 }
 
+.noquizzes {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
 @media (max-width: 700px) {
     .deleteButton {
         font-size: 0.7rem;

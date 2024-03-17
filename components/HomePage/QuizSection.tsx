@@ -21,19 +21,19 @@ const QuizSection: React.FC<{ hasQuizStarted: boolean; quizzes: quizzes; startQu
                             <span className={styles.customarrow}></span>
                         </div></>}
                     {quizzes.length === 0 && <h2 className={styles.noquiztext}>No quizzes detected. Please add a quiz.</h2>}
-                    <label className={styles.label} htmlFor='quiztime'><h3 className={styles.labelTitle}>Time per question (seconds):</h3></label>
-                    <div className={styles.selectcontainer}>
-                        <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
-                            <option key={10}>10</option>
-                            <option key={20}>20</option>
-                            <option key={30}>30</option>
-                            <option key={40}>40</option>
-                            <option key={50}>50</option>
-                            <option key={60}>60</option>
-                        </select>
-                        <span className={styles.customarrow}></span>
-                    </div>
-                    <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} disabled={quizzes.length === 0} className={styles.startLink}>{buttonText}</motion.button>
+                    {quizzes.length > 0 && <><label className={styles.label} htmlFor='quiztime'><h3 className={styles.labelTitle}>Time per question (seconds):</h3></label>
+                        <div className={styles.selectcontainer}>
+                            <select className={styles.select} defaultValue={10} required onChange={timeChangeHandler} id='quiztime'>
+                                <option key={10}>10</option>
+                                <option key={20}>20</option>
+                                <option key={30}>30</option>
+                                <option key={40}>40</option>
+                                <option key={50}>50</option>
+                                <option key={60}>60</option>
+                            </select>
+                            <span className={styles.customarrow}></span>
+                        </div>
+                        <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} disabled={quizzes.length === 0} className={styles.startLink}>{buttonText}</motion.button></>}
                 </form>}
                 {hasQuizStarted === true && <motion.button whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 100 }} className={styles.startLink} onClick={startQuiz}>Resume Quiz</motion.button>}
             </Card>
