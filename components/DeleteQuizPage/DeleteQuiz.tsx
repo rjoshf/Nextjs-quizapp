@@ -47,9 +47,9 @@ const DeleteQuiz: React.FC<{}> = () => {
     return (
         <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
             <AnimatePresence>
-                {showModal && <Modal open={showModal ? true : false} onClose={closeModalHandler}>
+                <Modal open={showModal ? true : false} onClose={closeModalHandler}>
                     <DeleteConfirmation onConfirm={quizDeleteHandler} onCancel={closeModalHandler}></DeleteConfirmation>
-                </Modal>}
+                </Modal>
             </AnimatePresence>
             <h1 className={styles.title}>Delete a quiz</h1>
             <div className={styles.deletequizcontainer}>
