@@ -1,5 +1,5 @@
 import React, { useRef, MouseEvent } from 'react';
-import ReactDOM from 'react-dom'; // Import ReactDOM
+import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
 
 import { motion } from 'framer-motion';
@@ -12,7 +12,6 @@ const Modal: React.FC<{ open: boolean; children: React.ReactNode; onClose: () =>
 
     if (!open) return null;
 
-    // Render the modal content using ReactDOM.createPortal
     return ReactDOM.createPortal(
         (
             <div className={styles.backdrop} onClick={onClose}>
@@ -21,7 +20,7 @@ const Modal: React.FC<{ open: boolean; children: React.ReactNode; onClose: () =>
                 </motion.div>
             </div>
         ),
-        document.getElementById('portal-root')! // Target container element
+        document.getElementById('portal-root')!
     );
 };
 
