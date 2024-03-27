@@ -20,6 +20,7 @@ export async function DELETE(req: Request) {
 
             return new Response(JSON.stringify({message: "Deleted Quiz"}), {status: 200});
         } else {
+            client.close();
             throw new Error('Invalid quiz ID');
         }
     } catch (error) {
