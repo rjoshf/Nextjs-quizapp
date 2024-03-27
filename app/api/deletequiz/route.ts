@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from 'mongodb';
 
-export async function DELETE(req: NextRequest, res: NextResponse) {
+export async function DELETE(req: Request) {
     try {
         const url = new URL(req.url);
         const id = url.searchParams.get("id") as string;

@@ -1,8 +1,6 @@
-// Import necessary modules
-import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: Request) {
     try {
         const data = await req.json();
 
@@ -19,16 +17,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         client.close();
 
-        return NextResponse.json({
-            message: 'Quiz created successfully',
-        });
+        return new Response('Quiz created successfully', {
+            status: 200,
+        })
+
     } catch (error) {
         console.error(error);
 
-        return NextResponse.json({
-            message: 'Error creating quiz',
-        }, {
+        return new Response('Error creating quiz', {
             status: 500,
-        });
+        })
     }
 }
