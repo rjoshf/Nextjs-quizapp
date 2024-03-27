@@ -18,12 +18,12 @@ export async function DELETE(req: Request) {
             await quizzesCollection.deleteOne({_id: new ObjectId(id)});
             client.close();
 
-            return new Response("Deleted Quiz");
+            return new Response(JSON.stringify({message: "Deleted Quiz"}), {status: 200});
         } else {
             throw new Error('Invalid quiz ID');
         }
     } catch (error) {
         console.error('Error:', error);
-        return new Response("An error occurred", { status: 500 });
+        return new Response(JSON.stringify({message: "An error occurred"}), { status: 500 });
     }
 }

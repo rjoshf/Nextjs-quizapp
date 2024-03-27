@@ -17,14 +17,14 @@ export async function POST(req: Request) {
 
         client.close();
 
-        return new Response('Quiz created successfully', {
+        return new Response(JSON.stringify({message: 'Quiz created successfully'}), {
             status: 200,
         })
 
     } catch (error) {
         console.error(error);
 
-        return new Response('Error creating quiz', {
+        return new Response(JSON.stringify({message: 'Error creating quiz'}), {
             status: 500,
         })
     }
