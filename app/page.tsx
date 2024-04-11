@@ -37,8 +37,6 @@ export default async function Home() {
   revalidatePath("/");
 
   return (
-    <>
-      <HomePage quizzes={quizzes}></HomePage>
-    </>
+    <HomePage quizzes={quizzes}></HomePage>
   );
 }
