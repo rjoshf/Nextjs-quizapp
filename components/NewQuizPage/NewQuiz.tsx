@@ -13,7 +13,7 @@ type quizData = {
     }[];
 }
 
-const NewQuiz: React.FC<{}> = ({ }) => {
+export default function NewQuiz() {
     const router = useRouter()
 
     const addQuizHandler = async (quizData: quizData) => {
@@ -34,5 +34,3 @@ const NewQuiz: React.FC<{}> = ({ }) => {
         <NewQuizForm onAddQuiz={addQuizHandler}></NewQuizForm>
     )
 }
-
-export default NewQuiz;

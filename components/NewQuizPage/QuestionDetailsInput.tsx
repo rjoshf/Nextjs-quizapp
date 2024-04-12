@@ -9,7 +9,7 @@ type Question = {
     answers: Answer[];
 };
 
-const QuestionDetailsInput: React.FC<{ questions: Question[]; onQuestionUpdate: (questionIndex: number, questionText: string) => void; onAnswerUpdate: (questionIndex: number, answerIndex: number, answerText: string) => void }> = ({ questions, onQuestionUpdate, onAnswerUpdate }) => {
+export default function QuestionDetailsInput({ questions, onQuestionUpdate, onAnswerUpdate }: { questions: Question[]; onQuestionUpdate: (questionIndex: number, questionText: string) => void; onAnswerUpdate: (questionIndex: number, answerIndex: number, answerText: string) => void }) {
 
     return (
         <>
@@ -45,5 +45,3 @@ const QuestionDetailsInput: React.FC<{ questions: Question[]; onQuestionUpdate: 
         </>
     )
 }
-
-export default QuestionDetailsInput;

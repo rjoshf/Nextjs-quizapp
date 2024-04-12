@@ -12,7 +12,7 @@ type quizzQuestions = {
     }[];
 }[];
 
-const QuestionItem: React.FC<{ activeQuestionIndex: number; answerState: string; quizzQuestions: quizzQuestions; answers: string[]; userAnswers: string[]; handleSkipAnswer: () => void; handleSelectAnswer: (answer: string) => void }> = ({ ...props }) => {
+export default function QuestionItem({ ...props }: { activeQuestionIndex: number; answerState: string; quizzQuestions: quizzQuestions; answers: string[]; userAnswers: string[]; handleSkipAnswer: () => void; handleSelectAnswer: (answer: string) => void }) {
 
     return (
         <motion.div key={props.activeQuestionIndex} initial={{ opacity: 0.5 }}
@@ -23,5 +23,3 @@ const QuestionItem: React.FC<{ activeQuestionIndex: number; answerState: string;
         </motion.div>
     )
 }
-
-export default QuestionItem;

@@ -21,7 +21,8 @@ type QuizData = {
     questions: Question[];
 };
 
-const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ onAddQuiz }) => {
+export default function NewQuizForm({ onAddQuiz }: { onAddQuiz: (quizData: QuizData) => void }) {
+
     const [quizTitle, setQuizTitle] = useState('');
     const [numberOfQuestions, setNumberOfQuestions] = useState(1);
     const [questions, setQuestions] = useState<Question[]>([
@@ -109,6 +110,4 @@ const NewQuizForm: React.FC<{ onAddQuiz: (quizData: QuizData) => void }> = ({ on
             </motion.section>
         </>
     );
-};
-
-export default NewQuizForm;
+}

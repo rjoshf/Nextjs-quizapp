@@ -12,8 +12,7 @@ import DeleteConfirmation from "../UI/DeleteConfirmation";
 import { QuizContext } from '@/app/context/store';
 import { useContext } from 'react';
 
-const DeleteQuiz: React.FC<{}> = () => {
-
+export default function DeleteQuiz() {
     const router = useRouter()
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState("");
@@ -62,7 +61,4 @@ const DeleteQuiz: React.FC<{}> = () => {
             </div>
         </motion.section>
     )
-
 }
-
-export default DeleteQuiz;

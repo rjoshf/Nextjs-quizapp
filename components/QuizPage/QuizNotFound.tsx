@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from 'framer-motion'
 import { useState } from 'react';
 
-const QuizNotFound: React.FC<{}> = () => {
+export default function QuizNotFound() {
     const [buttonText, setButtonText] = useState("Reset Quizzes")
     const router = useRouter();
 
@@ -24,6 +24,4 @@ const QuizNotFound: React.FC<{}> = () => {
             </Card>
         </>
     )
-};
-
-export default QuizNotFound;
+}

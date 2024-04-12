@@ -13,7 +13,8 @@ type quizzQuestions = {
     }[];
 }[];
 
-const Results: React.FC<{ quizzQuestions: quizzQuestions; userScore: number; userAnswers: string[] }> = ({ quizzQuestions, userScore, userAnswers }) => {
+export default function Results({ quizzQuestions, userScore, userAnswers }: { quizzQuestions: quizzQuestions; userScore: number; userAnswers: string[] }) {
+
     const router = useRouter();
 
     const [endQuizText, setEndQuizText] = useState("End Quiz")
@@ -56,5 +57,3 @@ const Results: React.FC<{ quizzQuestions: quizzQuestions; userScore: number; use
         </section>
     )
 }
-
-export default Results;

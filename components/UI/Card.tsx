@@ -1,11 +1,9 @@
 import styles from './Card.module.css'
 
-const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
+export default function Card({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
         <div className={`${styles.card} ${className}`}>
             {children}
         </div>
     )
 }
-
-export default Card;

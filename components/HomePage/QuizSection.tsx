@@ -6,7 +6,7 @@ import Card from '../UI/Card';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
-const QuizSection: React.FC<{ hasQuizStarted: boolean; quizzes: quizzes; startQuiz: (event: React.FormEvent) => void; quizChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void; timeChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void; buttonText: string; }> = ({ hasQuizStarted, quizzes, startQuiz, quizChangeHandler, timeChangeHandler, buttonText }) => {
+export default function QuizSection({ hasQuizStarted, quizzes, startQuiz, quizChangeHandler, timeChangeHandler, buttonText }: { hasQuizStarted: boolean; quizzes: quizzes; startQuiz: (event: React.FormEvent) => void; quizChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void; timeChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void; buttonText: string; }) {
 
     return (
         <motion.section viewport={{ once: true, amount: 0.5 }} initial={{ opacity: 0.8, y: 5, scale: 0.99 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} transition={{ type: 'tween', duration: 0.75 }}>
@@ -39,7 +39,4 @@ const QuizSection: React.FC<{ hasQuizStarted: boolean; quizzes: quizzes; startQu
             </Card>
         </motion.section>
     )
-
 }
-
-export default QuizSection;

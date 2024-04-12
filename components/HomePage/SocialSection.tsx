@@ -26,7 +26,7 @@ const defaultAnimations = {
     }
 }
 
-const SocialSection: React.FC<{}> = ({ }) => {
+export default function SocialSection() {
     const inViewRef = useRef(null);
     const isInView = useInView(inViewRef, { amount: 0.3, once: true });
 
@@ -46,5 +46,3 @@ const SocialSection: React.FC<{}> = ({ }) => {
         </section>
     )
 }
-
-export default SocialSection

@@ -9,8 +9,7 @@ import { IoIosCreate } from "react-icons/io";
 
 import { motion } from 'framer-motion';
 
-const InfoSection: React.FC<{}> = ({ }) => {
-
+export default function InfoSection() {
     return (
         <section className={styles.infoSection}>
             <h1 className={styles.infoTitle}>Where <span className={styles.knowledgetext}>knowledge</span> meets <span className={styles.funtext}>fun</span>.</h1>
@@ -44,7 +43,4 @@ const InfoSection: React.FC<{}> = ({ }) => {
             </div >
         </section >
     )
-
 }
-
-export default InfoSection;

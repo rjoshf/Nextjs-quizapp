@@ -1,6 +1,6 @@
 import styles from './Error.module.css'
 
-const Error: React.FC<{ errorTitle: string, errorMessage: string }> = ({ errorTitle, errorMessage }) => {
+export default function Error({ errorTitle, errorMessage }: { errorTitle: string; errorMessage: string }) {
     return (
         <div className={styles.errorContainer}>
             <h2>{errorTitle}</h2>
@@ -8,5 +8,3 @@ const Error: React.FC<{ errorTitle: string, errorMessage: string }> = ({ errorTi
         </div>
     )
 }
-
-export default Error;

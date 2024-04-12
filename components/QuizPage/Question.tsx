@@ -10,7 +10,7 @@ type quizzQuestions = {
     }[];
 }[];
 
-const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions }) => {
+export default function Question({ quizzQuestions }: { quizzQuestions: quizzQuestions }) {
     const { quizTimer } = useContext(QuizContext);
 
     //Initialising values for userAnswers and userScore states.
@@ -83,5 +83,3 @@ const Question: React.FC<{ quizzQuestions: quizzQuestions }> = ({ quizzQuestions
         </>
     )
 }
-
-export default Question;

@@ -2,9 +2,9 @@ import styles from './Answers.module.css';
 
 import { useState, useEffect } from 'react';
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
-const Answers: React.FC<{ answers: string[]; userAnswers: string[]; answerState: string; handleSelectAnswer: (answer: string) => void; }> = ({ answers, userAnswers, answerState, handleSelectAnswer }) => {
+export default function Answers({ answers, userAnswers, answerState, handleSelectAnswer }: { answers: string[]; userAnswers: string[]; answerState: string; handleSelectAnswer: (answer: string) => void; }) {
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>();
 
@@ -32,7 +32,4 @@ const Answers: React.FC<{ answers: string[]; userAnswers: string[]; answerState:
             })}
         </ul>
     )
-
 }
-
-export default Answers

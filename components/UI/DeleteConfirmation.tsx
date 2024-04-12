@@ -2,7 +2,7 @@ import styles from './DeleteConfirmation.module.css';
 
 import { motion } from 'framer-motion';
 
-const DeleteConfirmation: React.FC<{ onConfirm: () => void; onCancel: () => void }> = ({ onConfirm, onCancel }) => {
+export default function DeleteConfirmation({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
 
     return (
         <div className={styles.deleteConfirmation}>
@@ -19,5 +19,3 @@ const DeleteConfirmation: React.FC<{ onConfirm: () => void; onCancel: () => void
         </div>
     );
 }
-
-export default DeleteConfirmation;

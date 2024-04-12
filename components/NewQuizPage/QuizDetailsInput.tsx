@@ -1,6 +1,7 @@
 import styles from './QuizDetailsInput.module.css'
 
-const QuizDetailsInput: React.FC<{ quizTitle: string; updateQuizTitle: (title: string) => void; numberOfQuestions: number; questionChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void }> = ({ quizTitle, updateQuizTitle, numberOfQuestions, questionChangeHandler }) => {
+export default function QuizDetailsInput({ quizTitle, updateQuizTitle, numberOfQuestions, questionChangeHandler }: { quizTitle: string; updateQuizTitle: (title: string) => void; numberOfQuestions: number; questionChangeHandler: (event: React.ChangeEvent<HTMLSelectElement>) => void }) {
+
     return (
         <div className={styles.quizDetailsCard}>
             <div>
@@ -30,5 +31,3 @@ const QuizDetailsInput: React.FC<{ quizTitle: string; updateQuizTitle: (title: s
         </div>
     )
 }
-
-export default QuizDetailsInput;

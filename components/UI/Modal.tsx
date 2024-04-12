@@ -4,7 +4,7 @@ import styles from './Modal.module.css';
 
 import { motion } from 'framer-motion';
 
-const Modal: React.FC<{ open: boolean; children: React.ReactNode; onClose: () => void }> = ({ open, children, onClose }) => {
+export default function Modal({ open, children, onClose }: { open: boolean; children: React.ReactNode; onClose: () => void }) {
     const dialogRef = useRef<HTMLDivElement>(null);
     const handleDialogClick = (event: MouseEvent) => {
         event.stopPropagation(); // Prevent click from propagating to the backdrop
@@ -22,6 +22,4 @@ const Modal: React.FC<{ open: boolean; children: React.ReactNode; onClose: () =>
         ),
         document.getElementById('portal-root')!
     );
-};
-
-export default Modal;
+}

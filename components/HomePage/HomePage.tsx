@@ -11,8 +11,7 @@ import QuizSection from './QuizSection';
 
 type quizzes = { title: string; questions: { question: string; answers: { answer: string; }[]; }[]; id: string; }[]
 
-const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
-
+export default function HomePage({ quizzes }: { quizzes: quizzes }) {
     const router = useRouter();
 
     const { updateQuizzes, updateQuizTimer } = useContext(QuizContext);
@@ -71,5 +70,3 @@ const HomePage: React.FC<{ quizzes: quizzes }> = ({ quizzes }) => {
         </>
     );
 }
-
-export default HomePage;

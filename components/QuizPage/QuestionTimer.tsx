@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from './QuestionTimer.module.css';
 import { QuizContext } from "@/app/context/store";
 
-const QuestionTimer: React.FC<{ onTimeout: () => void; }> = ({ onTimeout }) => {
+export default function QuestionTimer({ onTimeout }: { onTimeout: () => void }) {
     const { quizTimer } = useContext(QuizContext)
 
     // State keeping track of the remaining time on the question.
@@ -44,5 +44,3 @@ const QuestionTimer: React.FC<{ onTimeout: () => void; }> = ({ onTimeout }) => {
         <progress className={styles.questiontime} value={remainingTime} max={quizTimer}></progress>
     );
 }
-
-export default QuestionTimer;
